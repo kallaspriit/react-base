@@ -9,7 +9,7 @@ export default () => (
 	<div className="app">
 		<Switch>
 			<Route exact path="/" component={IndexView} />
-			<Route exact path="/uig" component={UigView} />
+			<Route path="/uig" component={UigView} />
 			<Route component={NotFoundView} />
 		</Switch>
 	</div>
