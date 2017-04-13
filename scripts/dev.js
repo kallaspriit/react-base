@@ -2,8 +2,9 @@
 
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import 'colors';
 import opn from 'opn';
+import 'colors';
+import startDevServer from '../src/services/dev-server';
 import webpackConfig from '../config/webpack.dev';
 
 // dev server configuration
@@ -72,7 +73,11 @@ compiler.plugin('done', (stats) => {
 
 		console.log(`Opening development server ${indexUrl.bold}`);
 
+		// open browser
 		opn(indexUrl);
+
+		// also start a development server in the background
+		startDevServer();
 
 		isFirstDone = false;
 	}
@@ -86,5 +91,5 @@ compiler.plugin('failed', (error) => {
 // start the dev server on given port
 devServer.listen(serverConfig.port, serverConfig.host, () => {
 	console.log('');
-	console.log('-- Starting development server --'.underline);
+	console.log('-- Starting development server --'.bold);
 });
