@@ -1,13 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import views from '../';
 
 export default () => (
 	<div className="index-view">
-		<h1>Index</h1>
+		<h1>Index view</h1>
 		<ul className="menu">
-			<li>
-				<Link to="/uig">UIG</Link>
-			</li>
+			{Object.keys(views)
+				.filter(viewName => ['index', 'not-found'].indexOf(viewName) === -1)
+				.map(viewName => (
+					<li key={viewName}>
+						<Link to={`/view/${viewName}`}>{viewName}</Link>
+					</li>
+				))
+			}
+
 			<li>
 				<Link to="/xxx">Non-existing URL</Link>
 			</li>

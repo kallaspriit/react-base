@@ -8,10 +8,13 @@ const config = {
 	port: 9991,
 };
 
+// TODO any use for this?
 export default function start() {
 	const app = express();
 
-	app.use(bodyParser.urlencoded({ extended: true }));
+	app.use(bodyParser.urlencoded({
+		extended: true,
+	}));
 	app.use(bodyParser.json());
 
 	app.get('/', (request, response) => {
@@ -21,6 +24,6 @@ export default function start() {
 	});
 
 	app.listen(config, () => {
-		console.log(`${'started dev-tools server'.green} on port ${config.port.toString().bold}`);
+		console.log(`started dev-tools server on port ${config.port.toString().bold}`);
 	});
 }

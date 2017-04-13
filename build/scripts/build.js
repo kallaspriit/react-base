@@ -2,6 +2,8 @@
 
 import webpack from 'webpack';
 import 'colors';
+import { generateViewsIndex } from '../services/indexer';
+import reportWebpackStats from '../services/webpack-stats-reporter';
 import webpackConfig from '../webpack/webpack.build';
 import paths from '../../config/paths';
 
@@ -9,17 +11,35 @@ import paths from '../../config/paths';
 const compiler = webpack(webpackConfig);
 const startTime = Date.now();
 
-// run the compiler generating production build
-compiler.run((error, _stats) => {
-	if (error) {
-		console.log('FAILED'.red);
-		console.error(error);
+// generate the views index
+generateViewsIndex((viewIndexError, _wasIndexChanged) => {
+	if (viewIndexError) {
+		console.error(`generating views index failed (${viewIndexError})`);
 
 		return;
 	}
 
-	const timeTaken = Date.now() - startTime;
+	// run the compiler generating production build
+	compiler.run((compilerError, stats) => {
+		if (compilerError) {
+			console.log('COMPILE FAILED'.red);
+			console.error(compilerError);
 
-	console.log(`${'Static application ready'.green} in ${timeTaken}ms (output directory: ${paths.dist.bold})`);
-	console.log('');
+			return;
+		}
+
+		reportWebpackStats(stats);
+
+		if (stats.hasErrors()) {
+			console.log('please fix errors and try again'.bold);
+
+			return;
+		}
+
+		const timeTaken = Date.now() - startTime;
+
+		console.log(`${' DONE '.bgGreen.black} in ${timeTaken}ms (output directory: ${paths.dist.bold})`);
+		console.log(`run ${'> npm run serve'.bold} to serve the generated static application`);
+		console.log('');
+	});
 });

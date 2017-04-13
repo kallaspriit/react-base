@@ -2,10 +2,13 @@
 
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import opn from 'opn';
 import 'colors';
 import startDevServer from '../services/dev-server';
+import watch from '../services/file-watcher';
+import { generateViewsIndex } from '../services/indexer';
+import reportWebpackStats from '../services/webpack-stats-reporter';
 import webpackConfig from '../webpack/webpack.dev';
+import paths from '../../config/paths';
 
 // dev server configuration
 const serverConfig = {
@@ -43,44 +46,34 @@ compiler.plugin('compile', (_params) => {
 
 // called when compiler finishes update
 compiler.plugin('done', (stats) => {
-	const compileTimeTaken = Date.now() - compileStartTime;
-	const info = stats.toJson();
+	reportWebpackStats(stats);
 
 	if (stats.hasErrors()) {
-		console.log(`${'GOT ERRORS'.red} in ${compileTimeTaken}ms`);
-
-		info.errors.forEach((message) => {
-			const lines = message.split(/\n/);
-
-			console.error(lines[0].red);
-			console.error(lines.splice(1).map(line => `> ${line}`).join('\n'));
-			console.log('');
-		});
-	} else if (stats.hasWarnings()) {
-		console.log(`${'GOT WARNINGS'.yellow} in ${compileTimeTaken}ms`);
-
-		info.warnings.forEach((message) => {
-			const lines = message.split(/\n/);
-
-			console.error(lines[0].yellow);
-			console.error(lines.splice(1).map(line => `> ${line}`).join('\n'));
-			console.log('');
-		});
-	} else {
-		console.log(`${'UPDATED'.green} in ${compileTimeTaken}ms`);
+		return;
 	}
+
+	const compileTimeTaken = Date.now() - compileStartTime;
+
+	console.log(`${' UPDATED '.bgGreen.black} in ${compileTimeTaken}ms`);
 
 	// open web browser on first done event
 	if (isFirstDone) {
 		const indexUrl = `http://localhost${serverConfig.port !== 80 ? `:${serverConfig.port}` : ''}`;
 
-		console.log(`Opening development server ${indexUrl.bold}`);
+		console.log(`development server started at ${indexUrl.bold}`);
 
-		// open browser
-		opn(indexUrl);
-
-		// also start a development server in the background
+		// start a development server in the background
 		startDevServer();
+
+		// watch for JS file changes
+		watch(`${paths.src}/**/*.js`, (event, filepath) => {
+			// console.log(`${filepath.bold} was ${event.bold}`);
+
+			// regenerate views index if the changed file is in views directory
+			if (filepath.indexOf(paths.views) !== -1) {
+				generateViewsIndex();
+			}
+		});
 
 		isFirstDone = false;
 	}
@@ -88,8 +81,11 @@ compiler.plugin('done', (stats) => {
 
 // called when compiling fails hard
 compiler.plugin('failed', (error) => {
-	console.error(`${'FAILED'.red} (${error})`);
+	console.error(`${' FAILED '.bgRed.black} -${error}`);
 });
+
+// generate indexes
+generateViewsIndex();
 
 // start the dev server on given port
 devServer.listen(serverConfig.port, serverConfig.host, () => {

@@ -10,6 +10,7 @@ export default {
 	config: resolve('config'),
 	dist: resolve('dist'),
 	gfx: resolve('src', 'gfx'),
+	views: resolve('src', 'views'),
 	entry: resolve('src', 'index.js'),
 	indexHtml: resolve('src', 'index.html'),
 };
