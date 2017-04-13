@@ -1,39 +1,33 @@
-import styles from './gfx/main.scss';
+import React from 'react';
+import { render } from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { AppContainer } from 'react-hot-loader';
 
-// TODO add support for multiple html files
-require(`./index.html`);
+// get the root view and styles
+import RootView from './views/RootView';
+import './gfx/main.scss';
 
-/*
-const htmlFiles = require.context("./", true, /^\.\/.*\.html$/);
-
-if (module.hot) {
-    htmlFiles.keys().forEach((filename) => {
-        console.log('dynamic require context', filename);
-
-        module.hot.accept(filename, () => {
-            console.log(`require ${filename}`);
-
-            const contents = require(`bundle!${filename}`);
-
-            console.log(`reloading ${filename}`, contents);
-
-            // document.body.innerHTML = contents;
-
-            return false;
-        });
-    });
+// renders the application to html root element
+function renderApplication(application) {
+	// render the application
+	render(
+		<AppContainer>
+			<Router>
+				{application}
+			</Router>
+		</AppContainer>,
+		document.getElementById('root'),
+	);
 }
-*/
 
-// reload HTML files
+// render initial application
+renderApplication(<RootView />);
+
+// accept hot updates and re-render the application
 if (module.hot) {
-    module.hot.accept("./index.html", () => {
-        const contents = require('./index.html');
+	module.hot.accept('./views/RootView', () => {
+		const UpdatedRootView = require('./views/RootView').default; // eslint-disable-line global-require
 
-        console.log('reloading index.html', contents, arguments);
-
-        document.body.innerHTML = contents;
-
-        return false;
-    });
+		renderApplication(<UpdatedRootView />);
+	});
 }

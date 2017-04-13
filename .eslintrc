@@ -1,0 +1,12 @@
+{
+	"extends": "sl",
+	"rules": {
+		"import/no-named-as-default": 0,
+		"react/jsx-quotes": 0,
+		"no-unused-vars": ["error", { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }]
+	},
+	"env": {
+		"browser": true,
+		"jest": true
+	}
+}

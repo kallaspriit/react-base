@@ -1,11 +1,10 @@
 {
-    "presets": [
-        ["env", {
-            "targets": {
-                "browsers": ["last 2 versions"]
-            }
-        }],
-        "stage-1"
-    ],
-    "plugins": []
+	"presets": [
+		"es2015",
+		"stage-0",
+		"react"
+	],
+	"plugins": [
+		"react-hot-loader/babel"
+	]
 }

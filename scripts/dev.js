@@ -1,12 +1,14 @@
-import webpack, { HotModuleReplacementPlugin, DefinePlugin } from 'webpack';
+/* eslint-disable no-console */
+
+import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import colors from 'colors';
+import 'colors';
 import opn from 'opn';
 import webpackConfig from '../config/webpack.dev';
 
 // dev server configuration
 const serverConfig = {
-    hot: true,
+	hot: true,
 	overlay: {
 		warnings: true,
 		errors: true,
@@ -17,7 +19,7 @@ const serverConfig = {
 	quiet: true,
 	noInfo: true,
 	host: '0.0.0.0',
-	port: 3000
+	port: 3000,
 };
 
 // setup compiler and dev server
@@ -29,7 +31,7 @@ let compileStartTime = Date.now();
 let isFirstDone = true;
 
 // called when the compiler starts compiling
-compiler.plugin('compile', (params) => {
+compiler.plugin('compile', (_params) => {
 	compileStartTime = Date.now();
 
 	// process.stdout.write('compiling.. ');
@@ -38,47 +40,47 @@ compiler.plugin('compile', (params) => {
 // called when compiler finishes update
 compiler.plugin('done', (stats) => {
 	const compileTimeTaken = Date.now() - compileStartTime;
-	const info = stats.toJson()
+	const info = stats.toJson();
 
 	if (stats.hasErrors()) {
-		console.log('GOT ERRORS'.red + ` in ${compileTimeTaken}ms`);
+		console.log(`${'GOT ERRORS'.red} in ${compileTimeTaken}ms`);
 
-		info.errors.forEach(message => {
+		info.errors.forEach((message) => {
 			const lines = message.split(/\n/);
 
 			console.error(lines[0].red);
-			console.error(lines.splice(1).map(line => '> ' + line).join('\n'));
+			console.error(lines.splice(1).map(line => `> ${line}`).join('\n'));
 			console.log('');
 		});
 	} else if (stats.hasWarnings()) {
-		console.log('GOT WARNINGS'.yellow + ` in ${compileTimeTaken}ms`);
+		console.log(`${'GOT WARNINGS'.yellow} in ${compileTimeTaken}ms`);
 
-		info.warnings.forEach(message => {
+		info.warnings.forEach((message) => {
 			const lines = message.split(/\n/);
 
 			console.error(lines[0].yellow);
-			console.error(lines.splice(1).map(line => '> ' + line).join('\n'));
+			console.error(lines.splice(1).map(line => `> ${line}`).join('\n'));
 			console.log('');
 		});
 	} else {
-		console.log('UPDATED'.green + ` in ${compileTimeTaken}ms`);
+		console.log(`${'UPDATED'.green} in ${compileTimeTaken}ms`);
 	}
 
-    // open web browser on first done event
-    if (isFirstDone) {
-        const indexUrl = 'http://localhost' + (serverConfig.port !== 80 ? ':' + serverConfig.port : '');
+	// open web browser on first done event
+	if (isFirstDone) {
+		const indexUrl = `http://localhost${serverConfig.port !== 80 ? `:${serverConfig.port}` : ''}`;
 
-        console.log(`Opening development server ${indexUrl.bold}`);
-        
-        opn(indexUrl);
+		console.log(`Opening development server ${indexUrl.bold}`);
 
-        isFirstDone = false;
-    }
+		opn(indexUrl);
+
+		isFirstDone = false;
+	}
 });
 
 // called when compiling fails hard
 compiler.plugin('failed', (error) => {
-	console.error('FAILED'.red + ` (${error})`);
+	console.error(`${'FAILED'.red} (${error})`);
 });
 
 // start the dev server on given port

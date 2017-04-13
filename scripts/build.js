@@ -1,6 +1,7 @@
+/* eslint-disable no-console */
+
 import webpack from 'webpack';
-import WebpackDevServer from 'webpack-dev-server';
-import colors from 'colors';
+import 'colors';
 import webpackConfig from '../config/webpack.build';
 import paths from '../config/paths';
 
@@ -9,7 +10,7 @@ const compiler = webpack(webpackConfig);
 const startTime = Date.now();
 
 // run the compiler generating production build
-compiler.run((error, stats) => {
+compiler.run((error, _stats) => {
 	if (error) {
 		console.log('FAILED'.red);
 		console.error(error);
@@ -19,6 +20,6 @@ compiler.run((error, stats) => {
 
 	const timeTaken = Date.now() - startTime;
 
-	console.log('Static application ready'.green + ` in ${timeTaken}ms (output directory: ${paths.build.bold})`);
+	console.log(`${'Static application ready'.green} in ${timeTaken}ms (output directory: ${paths.build.bold})`);
 	console.log('');
-})
+});
