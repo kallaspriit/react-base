@@ -9,7 +9,7 @@ import paths from '../../config/paths';
 
 export function generateViewsIndex(callback) {
 	// glob for view directories
-	glob(`${paths.views}/*/`, (globError, directories) => {
+	glob(`${paths.views}/*/*View.js`, (globError, files) => {
 		if (globError) {
 			console.error(`${'indexer glob failed'.red} (${globError})`);
 
@@ -19,14 +19,14 @@ export function generateViewsIndex(callback) {
 		}
 
 		// map the directories to an array of objects containing view info
-		const views = directories.map((directory) => {
-			const viewDirectory = path.basename(directory);
-			const viewName = `${changeCase.pascalCase(viewDirectory)}View`;
+		const views = files.map((filename) => {
+			const viewName = path.basename(filename, '.js');
+			const viewDirectory = path.basename(path.dirname(filename));
+			// const viewDirectory = path.basename(directory);
+			// const viewName = `${changeCase.pascalCase(viewDirectory)}View`;
 
 			return {
 				name: viewName,
-				base: path.dirname(directory),
-				path: directory,
 				directory: viewDirectory,
 			};
 		});

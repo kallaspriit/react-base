@@ -16,7 +16,7 @@ export default () => (
 			}
 
 			<li>
-				<Link to="/xxx">Non-existing URL</Link>
+				<Link to="/xxx">test non-existing url</Link>
 			</li>
 		</ul>
 	</div>
