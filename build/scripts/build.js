@@ -38,7 +38,7 @@ generateViewsIndex((viewIndexError, _wasIndexChanged) => {
 
 		const timeTaken = Date.now() - startTime;
 
-		console.log(`${' DONE '.bgGreen.black} in ${timeTaken}ms (output directory: ${paths.dist.bold})`);
+		console.log(`${' BUILD COMPLETE '.bgGreen.black} in ${timeTaken}ms (output directory: ${paths.dist.bold})`);
 		console.log(`run ${'> npm run serve'.bold} to serve the generated static application`);
 		console.log('');
 	});
