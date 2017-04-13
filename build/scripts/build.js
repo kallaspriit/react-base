@@ -2,8 +2,8 @@
 
 import webpack from 'webpack';
 import 'colors';
-import webpackConfig from '../config/webpack.build';
-import paths from '../config/paths';
+import webpackConfig from '../webpack/webpack.build';
+import paths from '../../config/paths';
 
 // create compiler
 const compiler = webpack(webpackConfig);
@@ -20,6 +20,6 @@ compiler.run((error, _stats) => {
 
 	const timeTaken = Date.now() - startTime;
 
-	console.log(`${'Static application ready'.green} in ${timeTaken}ms (output directory: ${paths.build.bold})`);
+	console.log(`${'Static application ready'.green} in ${timeTaken}ms (output directory: ${paths.dist.bold})`);
 	console.log('');
 });

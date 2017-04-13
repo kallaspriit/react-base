@@ -39,10 +39,10 @@
     "webpack-dev-server": "^2.4.2"
   },
   "scripts": {
-    "dev": "babel-node scripts/dev.js",
-    "build": "babel-node scripts/build.js",
-    "serve": "babel-node scripts/serve.js",
-    "start": "babel-node scripts/build.js && babel-node scripts/serve.js",
+    "dev": "babel-node build/scripts/dev.js",
+    "build": "babel-node build/scripts/build.js",
+    "serve": "babel-node build/scripts/serve.js",
+    "start": "babel-node build/scripts/build.js && babel-node build/scripts/serve.js",
     "lint": "eslint ."
   },
   "author": "Priit Kallas <kallaspriit@gmail.com> (http://stagnationlab.com/)",

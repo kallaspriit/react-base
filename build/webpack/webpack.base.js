@@ -1,6 +1,6 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { NamedModulesPlugin } from 'webpack';
-import paths from './paths';
+import paths from '../../config/paths';
 
 process.traceDeprecation = true;
 
@@ -19,7 +19,7 @@ const config = {
 
 	// output configuration
 	output: {
-		path: paths.build,
+		path: paths.dist,
 		filename: 'bundle.js',
 	},
 

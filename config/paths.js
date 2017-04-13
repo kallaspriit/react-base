@@ -8,7 +8,7 @@ export default {
 	context: resolve('.'),
 	src: resolve('src'),
 	config: resolve('config'),
-	build: resolve('build'),
+	dist: resolve('dist'),
 	gfx: resolve('src', 'gfx'),
 	entry: resolve('src', 'index.js'),
 	indexHtml: resolve('src', 'index.html'),

@@ -1,10 +1,16 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import IndexView from './index/IndexView';
+import UigView from './uig/UigView';
+import NotFoundView from './not-found/NotFoundView';
 
 export default () => (
 	<div className="app">
-		<Route exact path="/" component={IndexView} />
+		<Switch>
+			<Route exact path="/" component={IndexView} />
+			<Route exact path="/uig" component={UigView} />
+			<Route component={NotFoundView} />
+		</Switch>
 	</div>
 );

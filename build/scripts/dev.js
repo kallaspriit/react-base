@@ -4,8 +4,8 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import opn from 'opn';
 import 'colors';
-import startDevServer from '../src/services/dev-server';
-import webpackConfig from '../config/webpack.dev';
+import startDevServer from '../services/dev-server';
+import webpackConfig from '../webpack/webpack.dev';
 
 // dev server configuration
 const serverConfig = {
@@ -21,6 +21,9 @@ const serverConfig = {
 	noInfo: true,
 	host: '0.0.0.0',
 	port: 3000,
+	historyApiFallback: {
+		index: 'index.html',
+	},
 };
 
 // setup compiler and dev server
