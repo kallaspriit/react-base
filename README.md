@@ -1,2 +1,2 @@
-# react-base
-React application foundation
+# React application base
+...

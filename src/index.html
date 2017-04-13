@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Sandbox</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Lato:100|Roboto" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <section class="experiment experiment__gradients">
+            <h2 class="experiment__title">Gradients</h2>
+            <div class="group">
+                <div class="gradient gradient__top-to-bottom">to bottom A, B</div>
+                <div class="gradient gradient__angle-smooth">45deg, A, B</div>
+                <div class="gradient gradient__angle-hard">45deg, A 75%, B 75%</div>
+                <div class="gradient gradient__multicolor-smooth">to bottom, A, B, C, D</div>
+                <div class="gradient gradient__multicolor-hard">to bottom, A 20%, B 20%, B 40%, C 40%, C 60%, D 60%, D 80%, F 80% F 100%</div>
+            </div>
+            <div class="group">
+                <div class="gradient gradient__radial-smooth">A B</div>
+                <div class="gradient gradient__radial-multicolor">A B C</div>
+                <div class="gradient gradient__radial-hard">A 50% B 50%</div>
+                <div class="gradient gradient__radial-background">A 50% B 50%</div>
+                <div class="gradient gradient__radial-ellipse">ellipse farthest-corner at 0px 0px, A 25%, B 75%</div>
+            </div>
+        </section>
+
+        <section class="experiment experiment__backgrounds">
+            <h2 class="experiment__title">Backgrounds</h2>
+            <div class="group">
+                <div class="background background__default">
+                    default
+                </div>
+                <div class="background background__no-repeat">
+                    background-repeat: no-repeat;
+                </div>
+                <div class="background background__repeat-x">
+                    background-repeat: repeat-x;
+                </div>
+                <div class="background background__repeat-y">
+                    background-repeat: repeat-y;
+                </div>
+                <div class="background background__position-px">
+                    background-repeat: no-repeat;<br/>
+                    background-position: 1em 2em;
+                </div>
+                <div class="background background__cover">
+                    background-repeat: no-repeat;<br/>
+                    background-size: cover;
+                </div>
+                <div class="background background__contain">
+                    background-repeat: no-repeat;<br/>
+                    background-size: contain;
+                </div>
+                <div class="background background__clip-border">
+                    background-repeat: no-repeat;<br/>
+                    background-clip: border-item;
+                </div>
+                <div class="background background__clip-border-origin">
+                    background-repeat: no-repeat;<br/>
+                    background-clip: border-item;<br/>
+                    background-origin: border-item;
+                </div>
+                <div class="background background__clip-padding">
+                    background-repeat: no-repeat;<br/>
+                    background-clip: padding-item;
+                </div>
+                <div class="background background__clip-content">
+                    background-repeat: no-repeat;<br/>
+                    background-clip: content-item;
+                </div>
+                <div class="background background__multiple">
+                    background:<br/>
+                        url(A) 0 0 no-repeat border-item,<br/>
+                        url(B) 100% 0 no-repeat  border-item,<br/>
+                        url(C) 0 100% no-repeat  border-item,<br/>
+                        url(D) 100% 100% no-repeat  border-item;
+                </div>
+            </div>
+        </section>
+
+        <section class="experiment experiment__flexbox-playground">
+            <h1 class="experiment__title">Flexbox playground</h1>
+            <div class="container">
+                <div class="item item__1">1</div>
+                <div class="item item__2">2</div>
+                <div class="item item__3">3</div>
+                <div class="item item__4">4</div>
+                <div class="item item__5">5</div>
+                <div class="item item__6">6</div>
+                <div class="item item__7">7</div>
+                <div class="item item__8">8</div>
+                <div class="item item__9">9</div>
+                <div class="item item__10">10</div>
+            </div>
+        </section>
+
+        <section class="experiment experiment__responsive">
+            <h2 class="experiment__title">Responsive CSS breakpoints</h2>
+            <div class="responsive-wrapper"></div>
+        </section>
+
+        <section class="experiment experiment__animations">
+            <h2 class="experiment__title">CSS animations</h2>
+            <div class="animation">
+                <div class="animation__1">Color</div>
+                <div class="animation__2">
+                    <div>Width &amp; height</div>
+                </div>
+                <div class="animation__3">
+                    <div>Scale</div>
+                </div>
+                <div class="animation__4">
+                    <div>Rotation &amp; color</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="experiment experiment__float-layout">
+            <h2 class="experiment__title">Float-based layout</h2>
+            <div class="layout">
+                <header class="layout__header">
+                    <div class="id">&lt;header&gt;</div>
+                </header>
+
+                <section class="layout__content">
+                    <div class="id">&lt;content&gt;</div>
+                </section>
+
+                <aside class="layout__sidebar">
+                    <div class="id">&lt;sidebar&gt;</div>
+                </aside>
+
+                <footer class="layout__footer">
+                    <div class="id">&lt;footer&gt;</div>
+                </footer>
+            </div>
+        </section>
+
+        <section class="experiment experiment__flexbox-layout">
+            <h2 class="experiment__title">Flexbox-based layout</h2>
+            <div class="layout">
+                <header class="layout__header">
+                    <div class="id">&lt;header&gt;</div>
+                </header>
+
+                <section class="layout__content">
+                    <div class="id">&lt;content&gt;</div>
+                </section>
+
+                <aside class="layout__sidebar">
+                    <div class="id">&lt;sidebar&gt;</div>
+                </aside>
+
+                <footer class="layout__footer">
+                    <div class="id">&lt;footer&gt;</div>
+                </footer>
+            </div>
+        </section>
+
+        <section class="experiment experiment__grid-layout">
+            <h2 class="experiment__title">Grid-based layout</h2>
+            <div class="layout">
+                <header class="layout__header">
+                    <div class="id">&lt;header&gt;</div>
+                </header>
+
+                <section class="layout__content">
+                    <div class="id">&lt;content&gt;</div>
+                </section>
+
+                <aside class="layout__sidebar">
+                    <div class="id">&lt;sidebar&gt;</div>
+                </aside>
+
+                <footer class="layout__footer">
+                    <div class="id">&lt;footer&gt;</div>
+                </footer>
+            </div>
+        </section>
+
+    </body>
+</html>
