@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 
 import webpack from 'webpack';
+import { Spinner } from 'cli-spinner';
 import 'colors';
 import { generateViewsIndex } from '../services/indexer';
 import reportWebpackStats from '../services/webpack-stats-reporter';
@@ -19,8 +20,14 @@ generateViewsIndex((viewIndexError, _wasIndexChanged) => {
 		return;
 	}
 
+	const spinner = new Spinner('Building, please wait..');
+	spinner.setSpinnerString(19);
+	spinner.start();
+
 	// run the compiler generating production build
 	compiler.run((compilerError, stats) => {
+		spinner.stop(true);
+
 		if (compilerError) {
 			console.log('COMPILE FAILED'.red);
 			console.error(compilerError);

@@ -2,6 +2,7 @@
 
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
+import { Spinner } from 'cli-spinner';
 import 'colors';
 import startDevServer from '../services/dev-server';
 import watch from '../services/file-watcher';
@@ -37,15 +38,22 @@ const devServer = new WebpackDevServer(compiler, serverConfig);
 let compileStartTime = Date.now();
 let isFirstDone = true;
 
+// setup spinner
+const spinner = new Spinner('Please wait..');
+spinner.setSpinnerString(19);
+
 // called when the compiler starts compiling
 compiler.plugin('compile', (_params) => {
 	compileStartTime = Date.now();
 
-	// process.stdout.write('compiling.. ');
+	spinner.setSpinnerTitle('Updating, please wait..');
+	spinner.start();
 });
 
 // called when compiler finishes update
 compiler.plugin('done', (stats) => {
+	spinner.stop(true);
+
 	reportWebpackStats(stats);
 
 	if (stats.hasErrors()) {
@@ -90,5 +98,8 @@ generateViewsIndex();
 // start the dev server on given port
 devServer.listen(serverConfig.port, serverConfig.host, () => {
 	console.log('');
-	console.log('-- Starting development server --'.bold);
+	// console.log('-- Starting development server --'.bold);
+
+	spinner.setSpinnerTitle('Starting development server, please wait..'.bold);
+	spinner.start();
 });

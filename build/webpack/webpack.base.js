@@ -13,6 +13,7 @@ const config = {
 	// application entry filename
 	entry: {
 		app: [
+			'whatwg-fetch', // fetch polyfill - https://github.com/github/fetch
 			paths.entry,
 		],
 	},

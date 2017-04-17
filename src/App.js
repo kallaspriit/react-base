@@ -11,10 +11,11 @@ import createDevTools from './components/dev-tools';
 export default () => (
 	<div className="app">
 		<Switch>
+			{/* custom routes */}
 			<Route exact path="/" component={IndexView} />
 			<Route path="/uig" component={UigView} />
 
-			{/* add automatic /view/.. routes */}
+			{/* automatic /view/.. routes */}
 			{Object.keys(views)
 				.filter(viewName => ['index', 'not-found'].indexOf(viewName) === -1)
 				.map(viewName => (
@@ -22,6 +23,7 @@ export default () => (
 				))
 			}
 
+			{/* 404 not found route */}
 			<Route component={NotFoundView} />
 		</Switch>
 		{createDevTools()}

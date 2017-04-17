@@ -25,6 +25,6 @@ config.entry.app.unshift(
 );
 
 // generate source-maps (disable for faster hot-reload)
-// config.devtool = 'source-map';
+config.devtool = 'source-map';
 
 export default config;
