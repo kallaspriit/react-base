@@ -1,4 +1,4 @@
-import { DefinePlugin } from 'webpack';
+import webpack, { DefinePlugin } from 'webpack';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import ExtractTextWebpackPlugin from 'extract-text-webpack-plugin';
 import base from './webpack.base';
@@ -22,6 +22,17 @@ config.plugins.unshift(
 	// add the environment define plugin
 	new DefinePlugin({
 		'process.env.NODE_ENV': JSON.stringify('production'),
+	}),
+
+	// set loader options
+	new webpack.LoaderOptionsPlugin({
+		minimize: true,
+		debug: false,
+	}),
+
+	// optimize output
+	new webpack.optimize.UglifyJsPlugin({
+		sourceMap: 'cheap-module-source-map',
 	}),
 
 	// add plugin to extract

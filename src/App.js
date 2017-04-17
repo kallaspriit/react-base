@@ -6,6 +6,8 @@ import IndexView from './views/index/IndexView';
 import UigView from './views/uig/UigView';
 import NotFoundView from './views/not-found/NotFoundView';
 
+import createDevTools from './components/dev-tools';
+
 export default () => (
 	<div className="app">
 		<Switch>
@@ -22,5 +24,6 @@ export default () => (
 
 			<Route component={NotFoundView} />
 		</Switch>
+		{createDevTools()}
 	</div>
 );
