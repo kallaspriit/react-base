@@ -3,9 +3,9 @@
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import { Spinner } from 'cli-spinner';
+import { watch } from 'chokidar';
 import 'colors';
 import startDevServer from '../services/dev-server';
-import watch from '../services/file-watcher';
 import { generateViewsIndex } from '../services/indexer';
 import reportWebpackStats from '../services/webpack-stats-reporter';
 import webpackConfig from '../webpack/webpack.dev';
@@ -62,28 +62,35 @@ compiler.plugin('done', (stats) => {
 
 	const compileTimeTaken = Date.now() - compileStartTime;
 
-	console.log(`${' UPDATED '.bgGreen.black} in ${compileTimeTaken}ms`);
-
 	// open web browser on first done event
 	if (isFirstDone) {
 		const indexUrl = `http://localhost${serverConfig.port !== 80 ? `:${serverConfig.port}` : ''}`;
 
-		console.log(`development server started at ${indexUrl.bold}`);
+		console.log(`server at ${indexUrl.bold} was started in ${compileTimeTaken}ms`);
 
 		// start a development server in the background
 		startDevServer();
 
-		// watch for JS file changes
-		watch(`${paths.src}/**/*.js`, (event, filepath) => {
-			// console.log(`${filepath.bold} was ${event.bold}`);
+		// watch for view file changes and regenerate the index
+		const watcher = watch(paths.views, {
+			ignoreInitial: true,
+		});
 
-			// regenerate views index if the changed file is in views directory
-			if (filepath.indexOf(paths.views) !== -1) {
-				generateViewsIndex();
-			}
+		// regenerate views index if the changed file is in views directory
+		watcher.on('addDir', (path) => {
+			// console.log(`${path.bold} was added, regenerating index`);
+
+			generateViewsIndex();
+		});
+		watcher.on('unlinkDir', (path) => {
+			// console.log(`${path.bold} was removed, regenerating index`);
+
+			generateViewsIndex();
 		});
 
 		isFirstDone = false;
+	} else {
+		console.log(`${' UPDATED '.bgGreen.black} in ${compileTimeTaken}ms`);
 	}
 });
 

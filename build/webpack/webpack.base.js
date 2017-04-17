@@ -32,9 +32,9 @@ const config = {
 			{
 				test: /\.js$/,
 				exclude: /(node_modules|bower_components)/,
-				use: {
+				use: [{
 					loader: 'babel-loader',
-				},
+				}],
 			},
 
 			// add support loading media files
@@ -43,34 +43,31 @@ const config = {
 				include: [
 					paths.gfx,
 				],
-				loaders: [
-					{
-						loader: 'file-loader',
-						query: {
-							hash: 'sha512',
-							digest: 'hex',
-							name: process.env.NODE_ENV === 'production'
-								? 'static/gfx/[name].[hash:8].[ext]'
-								: '[path][name].[ext]',
+				use: [{
+					loader: 'file-loader',
+					query: {
+						hash: 'sha512',
+						digest: 'hex',
+						name: process.env.NODE_ENV === 'production'
+							? 'static/gfx/[name].[hash:8].[ext]'
+							: '[path][name].[ext]',
+					},
+				}, {
+					loader: 'image-webpack-loader',
+					query: {
+						progressive: true,
+						optipng: {
+							optimizationLevel: 4,
+						},
+						gifsicle: {
+							interlaced: false,
+						},
+						pngquant: {
+							quality: '65-90',
+							speed: 4,
 						},
 					},
-					{
-						loader: 'image-webpack-loader',
-						query: {
-							progressive: true,
-							optipng: {
-								optimizationLevel: 4,
-							},
-							gifsicle: {
-								interlaced: false,
-							},
-							pngquant: {
-								quality: '65-90',
-								speed: 4,
-							},
-						},
-					},
-				],
+				}],
 			},
 
 			// add support for loading sass files

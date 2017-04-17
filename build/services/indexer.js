@@ -21,8 +21,6 @@ export function generateViewsIndex(callback) {
 		const views = files.map((filename) => {
 			const viewName = path.basename(filename, '.js');
 			const viewDirectory = path.basename(path.dirname(filename));
-			// const viewDirectory = path.basename(directory);
-			// const viewName = `${changeCase.pascalCase(viewDirectory)}View`;
 
 			return {
 				name: viewName,
@@ -76,7 +74,7 @@ export function generateViewsIndex(callback) {
 					callback(null, true);
 				}
 
-				console.log(`generated views index: ${filename.bold}`);
+				// console.log(`generated views index: ${filename.bold}`);
 			});
 		});
 	});

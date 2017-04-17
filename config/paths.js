@@ -9,6 +9,7 @@ export default {
 	src: resolve('src'),
 	config: resolve('config'),
 	dist: resolve('dist'),
+	buildTemplates: resolve('build', 'templates'),
 	gfx: resolve('src', 'gfx'),
 	views: resolve('src', 'views'),
 	entry: resolve('src', 'index.js'),

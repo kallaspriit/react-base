@@ -4,6 +4,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import 'colors';
+import createView from '../services/create-view';
 
 const config = {
 	port: 9991,
@@ -50,10 +51,12 @@ export default function start() {
 		const name = request.body.name;
 
 		if (typeof name !== 'string' || name.length === 0) {
-			throw new Error('expected non-empty string "name" parameter');
+			throw new Error('Expected non-empty string "name" parameter.');
 		}
 
-		console.log('CREATE VIEW', name);
+		createView({
+			name,
+		});
 
 		response.json(
 			success({
@@ -64,7 +67,7 @@ export default function start() {
 
 	// start the server
 	app.listen(config, () => {
-		console.log(`dev-tools server started at ${`http://localhost:${config.port}`.bold}`);
+		// console.log(`dev-tools server started at ${`http://localhost:${config.port}`.bold}`);
 	});
 
 	// add custom error handler
