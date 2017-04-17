@@ -9,9 +9,20 @@ const config = {
 	port: 9991,
 };
 
-function errorHandler(err, req, res, _next) {
-	res.status(500);
-	res.render('error', { error: err });
+function success(payload) {
+	return {
+		success: true,
+		error: null,
+		payload,
+	};
+}
+
+function error(message) {
+	return {
+		success: false,
+		error: message,
+		payload: null,
+	};
 }
 
 export default function start() {
@@ -44,9 +55,11 @@ export default function start() {
 
 		console.log('CREATE VIEW', name);
 
-		response.json({
-			success: true,
-		});
+		response.json(
+			success({
+				name,
+			}),
+		);
 	});
 
 	// start the server
@@ -56,20 +69,16 @@ export default function start() {
 
 	// add custom error handler
 	app.use((err, req, res, next) => {
-		if (res.headersSent || !req.xhr) {
-			console.log('not handling error', err);
-
+		if (res.headersSent) {
 			return next(err);
 		}
 
 		console.log('handling error', err);
 
-		res.status(500).json({
-			error: err.message,
-		});
+		res.status(500).json(
+			error(err.message),
+		);
 
 		return null;
 	});
-
-	app.use(errorHandler);
 }
