@@ -1,10 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import views from './';
+import views from './views';
 
-import IndexView from './index/IndexView';
-import UigView from './uig/UigView';
-import NotFoundView from './not-found/NotFoundView';
+import IndexView from './views/index/IndexView';
+import UigView from './views/uig/UigView';
+import NotFoundView from './views/not-found/NotFoundView';
 
 export default () => (
 	<div className="app">
@@ -12,6 +12,7 @@ export default () => (
 			<Route exact path="/" component={IndexView} />
 			<Route path="/uig" component={UigView} />
 
+			{/* add automatic /view/.. routes */}
 			{Object.keys(views)
 				.filter(viewName => ['index', 'not-found'].indexOf(viewName) === -1)
 				.map(viewName => (

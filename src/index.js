@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
 
 // get the root view and styles
-import RootView from './views/RootView';
+import App from './App';
 import './gfx/main.scss';
 
 // renders the application to html root element
@@ -21,12 +21,12 @@ function renderApplication(application) {
 }
 
 // render initial application
-renderApplication(<RootView />);
+renderApplication(<App />);
 
 // accept hot updates and re-render the application
 if (module.hot) {
-	module.hot.accept('./views/RootView', () => {
-		const UpdatedRootView = require('./views/RootView').default; // eslint-disable-line global-require
+	module.hot.accept('./App', () => {
+		const UpdatedRootView = require('./App').default; // eslint-disable-line global-require
 
 		renderApplication(<UpdatedRootView />);
 	});
