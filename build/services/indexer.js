@@ -3,7 +3,6 @@
 import glob from 'glob';
 import path from 'path';
 import fs from 'fs';
-import changeCase from 'change-case';
 import 'colors';
 import paths from '../../config/paths';
 
