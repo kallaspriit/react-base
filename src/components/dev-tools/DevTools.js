@@ -1,21 +1,10 @@
 /* eslint-disable no-console */
 
 import React, { Component } from 'react';
+import { createView } from '../../api/dev-server/dev-server-api';
 import ViewsMenu from '../views-menu/ViewsMenu';
-import { post } from '../../services/fetch';
+
 import './dev-tools.scss';
-
-export function createView({
-	name,
-}) {
-	console.log('create view', name);
-
-	const url = 'http://localhost:9991/create-view';
-
-	return post(url, {
-		name,
-	});
-}
 
 export default class DevTools extends Component {
 
