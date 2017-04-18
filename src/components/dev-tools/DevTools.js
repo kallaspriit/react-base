@@ -1,4 +1,8 @@
+/* eslint-disable no-console */
+
 import React, { Component } from 'react';
+import ViewsMenu from '../views-menu/ViewsMenu';
+import './dev-tools.scss';
 
 export function createView({
 	name,
@@ -30,17 +34,25 @@ export default class DevTools extends Component {
 
 	render = () => (
 		<div className="dev-tools">
-			<form onSubmit={this.handleCreateViewSubmit}>
-				<label htmlFor="dev-tools-view-name">View name</label>
-				<input
-					id="dev-tools-view-name"
-					placeholder="Enter view name"
-					name="viewName"
-					value={this.state.viewName}
-					onChange={this.handleValueChange}
-				/>
-				<button type="submit">Create view</button>
-			</form>
+			<div className="dev-tools__wrapper">
+				<section className="dev-tools__top">
+					<h1>Views</h1>
+					<ViewsMenu />
+				</section>
+				<section className="dev-tools__bottom">
+					<form className="generator-form" onSubmit={this.handleCreateViewSubmit}>
+						<input
+							id="dev-tools-view-name"
+							name="viewName"
+							placeholder="Enter view name"
+							className="generator-form__textfield"
+							value={this.state.viewName}
+							onChange={this.handleValueChange}
+						/>
+						<button type="submit" className="generator-form__button">Create view</button>
+					</form>
+				</section>
+			</div>
 		</div>
 	)
 

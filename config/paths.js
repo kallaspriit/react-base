@@ -11,6 +11,7 @@ export default {
 	dist: resolve('dist'),
 	buildTemplates: resolve('build', 'templates'),
 	gfx: resolve('src', 'gfx'),
+	components: resolve('src', 'components'),
 	views: resolve('src', 'views'),
 	entry: resolve('src', 'index.js'),
 	indexHtml: resolve('src', 'index.html'),
