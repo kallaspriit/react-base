@@ -65,6 +65,7 @@
 - `.eslintrc` contains the ESLint linter configuration.
 - `.eslintignore` contains the list of directories the linter should ignore.
 - `.gitignore` contains the list of directories the git version control should ignore.
+- `yarn.lock` stores the exact installed versions of dependencies, automatically managed by yarn. This file should be checked into version control.
 - `LICENCE` contains this software package's license agreement.
 
 ## Development tools
