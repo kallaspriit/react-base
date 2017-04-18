@@ -29,6 +29,7 @@
 		padding: 0 1rem;
 		background-color: rgba(0, 0, 0, 0.75);
 		font-weight: 100;
+		border-bottom: 1px solid #000;
 	}
 
 	&__wrapper {
@@ -59,12 +60,13 @@
 			font-size: 1.5rem;
 			width: 100%;
 			border: none;
-			padding: 0.2rem 0.4rem;
+			padding: 0 1rem;
 			line-height: 3rem;
 			color: #FFF;
 		}
 		&__textfield {
 			background-color: rgba(0, 0, 0, 0.25);
+			outline: none;
 		}
 		&__button {
 			width: 100%;
@@ -72,7 +74,8 @@
 			margin-top: -1px;
 		}
 		&__error {
-			padding: 1rem;
+			padding: 0.5rem 1rem;
+			text-align: center;
 			background-color: #900;
 			color: #FFF;
 		}

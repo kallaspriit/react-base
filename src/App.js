@@ -17,7 +17,6 @@ export default () => (
 
 			{/* automatic /view/.. routes */}
 			{Object.keys(views)
-				.filter(viewName => ['index', 'not-found'].indexOf(viewName) === -1)
 				.map(viewName => (
 					<Route key={viewName} path={`/view/${viewName}`} component={views[viewName]} />
 				))

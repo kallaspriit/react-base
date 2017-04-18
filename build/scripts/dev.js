@@ -77,12 +77,12 @@ compiler.plugin('done', (stats) => {
 		});
 
 		// regenerate views index if the changed file is in views directory
-		watcher.on('addDir', (path) => {
+		watcher.on('addDir', (_path) => {
 			// console.log(`${path.bold} was added, regenerating index`);
 
 			generateViewsIndex();
 		});
-		watcher.on('unlinkDir', (path) => {
+		watcher.on('unlinkDir', (_path) => {
 			// console.log(`${path.bold} was removed, regenerating index`);
 
 			generateViewsIndex();
