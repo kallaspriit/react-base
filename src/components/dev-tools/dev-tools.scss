@@ -71,6 +71,11 @@
 			background: none;
 			margin-top: -1px;
 		}
+		&__error {
+			padding: 1rem;
+			background-color: #900;
+			color: #FFF;
+		}
 	}
 
 	.views-menu {

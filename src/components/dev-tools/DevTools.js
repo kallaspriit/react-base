@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import ViewsMenu from '../views-menu/ViewsMenu';
+import { post } from '../../services/fetch';
 import './dev-tools.scss';
 
 export function createView({
@@ -11,18 +12,8 @@ export function createView({
 
 	const url = 'http://localhost:9991/create-view';
 
-	fetch(url, {
-		method: 'POST',
-		body: JSON.stringify({
-			name,
-		}),
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	}).then((response) => {
-		console.log('view created', response);
-	}).catch((error) => {
-		console.error('creating view failed', error);
+	return post(url, {
+		name,
 	});
 }
 
@@ -30,6 +21,7 @@ export default class DevTools extends Component {
 
 	state = {
 		viewName: '',
+		error: null,
 	};
 
 	render = () => (
@@ -41,6 +33,7 @@ export default class DevTools extends Component {
 				</section>
 				<section className="dev-tools__bottom">
 					<form className="generator-form" onSubmit={this.handleCreateViewSubmit}>
+						{this.state.error ? <div className="generator-form__error">{this.state.error}</div> : null}
 						<input
 							id="dev-tools-view-name"
 							name="viewName"
@@ -67,10 +60,19 @@ export default class DevTools extends Component {
 
 		createView({
 			name: this.state.viewName,
+		}).then((response) => {
+			console.log('view created', response);
+		}).catch((error) => {
+			console.error('creating view failed', error.message);
+
+			this.setState({
+				error: error.message,
+			});
 		});
 
 		this.setState({
 			viewName: '',
+			error: null,
 		});
 	}
 }

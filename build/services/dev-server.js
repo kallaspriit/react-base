@@ -51,7 +51,7 @@ export default function start() {
 		const name = request.body.name;
 
 		if (typeof name !== 'string' || name.length === 0) {
-			throw new Error('Expected non-empty string "name" parameter.');
+			throw new Error('Please enter view name.');
 		}
 
 		createView({
