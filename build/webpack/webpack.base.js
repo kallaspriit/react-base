@@ -85,6 +85,17 @@ const config = {
 					loader: 'sass-loader',
 				}],
 			},
+
+			// add support for loading markdown (.md) and text files (.txt) as a string
+			{
+				test: /\.md$/,
+				include: [
+					paths.context,
+				],
+				use: [{
+					loader: 'raw-loader',
+				}],
+			},
 		],
 	},
 
