@@ -6,6 +6,16 @@
 	$transitionDuration: 300ms;
 	$transitionDelay: 500ms;
 
+	$wrapper-opacity: 0.7;
+	$border-inversion: 20%;
+	$background-color: #222;
+
+	$text-color: invert($background-color);
+	$border-color-darken: darken($background-color, $border-inversion);
+	$border-color-lighten: lighten($background-color, $border-inversion);
+	$wrapper-background-color: rgba($background-color, $wrapper-opacity);
+	$menu-background-color: lighten($background-color, $border-inversion / 2);
+
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -13,27 +23,28 @@
 	width: 20rem;
 	padding: 0 0 0 $hoverWidth;
 	font-family: "Helvetica Narrow", sans-serif;
+	color: $text-color;
 	display: flex;
 	flex-direction: column;
+
+	// handle hover slide in & out
 	transform: $closedTransform;
 	transition: transform $transitionDuration;
 	transition-delay: $transitionDelay;
-
 	&:hover {
 		transform: $openTransform;
 	}
 
 	h1 {
-		color: #FFF;
 		margin: 0;
 		padding: 0 1rem;
-		background-color: rgba(0, 0, 0, 0.75);
+		background-color: $background-color;
 		font-weight: 100;
-		border-bottom: 1px solid #000;
+		border-bottom: 1px solid $border-color-darken;
 	}
 
 	&__wrapper {
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: $wrapper-background-color;
 		display: flex;
 		flex-direction: column;
 		height: 100%;
@@ -48,9 +59,27 @@
 		flex: 0 1;
 	}
 
-	.generator-form {
-		background-color: rgba(0, 0, 0, 0.25);
+	.views-menu {
+		list-style: none;
+		padding: 0;
+		margin: 0;
 
+		li {
+			background-color: $menu-background-color;
+			border-top: 1px solid $border-color-lighten;
+			border-bottom: 1px solid $border-color-darken;
+
+			a {
+				display: block;
+				line-height: 1.5rem;
+				padding: 0.5rem 1rem;
+				color: $text-color;
+				text-decoration: none;
+			}
+		}
+	}
+
+	.generator-form {
 		&__label {
 			display: block;
 			color: #FFF;
@@ -72,32 +101,14 @@
 			width: 100%;
 			background: none;
 			margin-top: -1px;
+			background-color: $menu-background-color;
+			border-top: 1px solid $border-color-darken;
 		}
 		&__error {
 			padding: 0.5rem 1rem;
 			text-align: center;
 			background-color: #900;
 			color: #FFF;
-		}
-	}
-
-	.views-menu {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-
-		li {
-			background-color: rgba(0, 0, 0, 0.25);
-			border-top: 1px solid rgba(255, 255, 255, 0.25);
-			border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-
-			a {
-				display: block;
-				line-height: 1.5rem;
-				padding: 0.5rem 1rem;
-				color: #FFF;
-				text-decoration: none;
-			}
 		}
 	}
 }

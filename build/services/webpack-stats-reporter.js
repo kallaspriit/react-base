@@ -3,7 +3,7 @@
 function logMessage(number, message) {
 	const lines = message.split(/\n/);
 
-	console.error(`${number} - ${lines[0].bold}`);
+	console.error(`#${number} in ${lines[0].bold}`);
 	console.error(lines.splice(1).map(line => `> ${line}`).join('\n'));
 	console.log('');
 }
