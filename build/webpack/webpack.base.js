@@ -75,6 +75,7 @@ const config = {
 				test: /\.scss$/,
 				include: [
 					paths.gfx,
+					paths.views,
 					paths.components,
 				],
 				use: [{
