@@ -9,7 +9,7 @@ export default () => (
 		<h1>Welcome!</h1>
 		<p>This view contents is served from <strong>src/views/index/IndexView.js</strong>, feel free to change it!</p>
 		<p>
-			If you started this as a development server (<strong>npm run dev</strong>),
+			If you started this as a development server (<strong>npm start</strong>),
 			any changes should appear immediately without needing to reload.
 		</p>
 

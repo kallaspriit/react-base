@@ -4,6 +4,7 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import { Spinner } from 'cli-spinner';
 import { watch } from 'chokidar';
+import opn from 'opn';
 import 'colors';
 import startDevServer from '../services/dev-server';
 import { generateViewsIndex } from '../services/indexer';
@@ -64,7 +65,7 @@ compiler.plugin('done', (stats) => {
 
 	// open web browser on first done event
 	if (isFirstDone) {
-		const indexUrl = `http://localhost${serverConfig.port !== 80 ? `:${serverConfig.port}` : ''}`;
+		const indexUrl = `http://localhost${serverConfig.port !== 80 ? `:${serverConfig.port}` : ''}/`;
 
 		console.log(`server at ${indexUrl.bold} was started in ${compileTimeTaken}ms`);
 
@@ -87,6 +88,9 @@ compiler.plugin('done', (stats) => {
 
 			generateViewsIndex();
 		});
+
+		// open in browser
+		opn(indexUrl);
 
 		isFirstDone = false;
 	} else {

@@ -18,7 +18,7 @@ serve(paths.dist, {
 // provide some help
 console.log(`${' SERVER STARTED '.bgGreen.black} on ${url.bold}`);
 console.log(`> The pre-built application is served from ${paths.dist.bold}`);
-console.log(`> This is a static application server. For development with hot-reload use ${'> npm run dev'.bold}`);
+console.log(`> This is a static application server. For development with hot-reload use ${'> npm start'.bold}`);
 console.log(`> Press ${'CTRL+C'.bold} to stop the server`);
 
 // open web browser
