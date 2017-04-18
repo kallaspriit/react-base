@@ -1,13 +1,4 @@
-@import "~normalize-scss/sass/normalize/import-now"; // https://github.com/JohnAlbin/normalize-scss
-
-// https://www.paulirish.com/2012/box-sizing-border-box-ftw/
-html {
-	box-sizing: border-box;
-	font-size: 1em;
-	line-height: 1.5;
-}
-*,
-*:before,
-*:after {
-	box-sizing: inherit;
-}
+@import "vars";
+@import "reset";
+@import "typography";
+@import "layout";
