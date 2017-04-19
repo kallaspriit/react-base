@@ -141,12 +141,13 @@ export default class CounterView extends Component {
 ```
 
 ## Future ideas
+- Implement more complex graphql server.
+- Implement graphql server hot-reload.
 - Implement indexing reducers?
 - Integrate testing?
 - Implement environment configuration logic?
 - Handle svg background?
 - Add REST API example?
-- Add GraphQL example?
 - Add watcher to npm serve script to rebuild on changes?
 - Integrate logging (Winston, Bunyan, debug, ...)?
 - Build or remove the UIG view?
