@@ -44,6 +44,7 @@
     - `src/gfx/layout.scss` contains global layout-related rules such as grid system.
   - `src/services` contains various application-specific functionality used by views and components such as making low-level REST API requests.
   - `src/constants` - contains application-specific constants. Avoid using string literals when possible.
+    - `src/constants/shapes.js` - contains reusable React PropTypes validation shapes.
   - `src/api` contains drivers for talking to various APIs. Each driver should reside in a separate directory and may contain additional files. Any kind of client-side API mocking should be implemented in this level. This directory can be removed if the application does not integrate with any APIs.
 - `build/` contains code and configuration for operating the development server and building production version.
   - `build/scripts` contains the scripts executed by the *npm run ...* commands (script name matches the command name). These are processed by babel as well.
