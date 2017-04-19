@@ -1,15 +1,11 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import promiseMiddleware from './promise-middleware';
-
-// TODO take from auto-generated index
-import exampleReduxReducer from '../views/example/children/redux/example-redux-reducer';
+import reducer from '../reducer';
 
 export default function configureStore(initialState) {
-	return createStore(
-		combineReducers({
-			exampleReduxReducer,
-		}),
+	const store = createStore(
+		reducer,
 		initialState,
 		compose(
 			applyMiddleware(thunkMiddleware),
@@ -17,4 +13,15 @@ export default function configureStore(initialState) {
 			process.env.NODE_ENV === 'development' && window.devToolsExtension ? window.devToolsExtension() : f => f,
 		),
 	);
+
+	// hot-reload reducers
+	if (module.hot) {
+		module.hot.accept('../reducer', () => {
+			const updatedReducer = require('../reducer').default;  // eslint-disable-line global-require
+
+			store.replaceReducer(updatedReducer);
+		});
+	}
+
+	return store;
 }

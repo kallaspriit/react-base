@@ -10,7 +10,7 @@ const ExampleRedux = ({
 	<div className="example-redux">
 		<h2>Counter example based on redux store</h2>
 		<p>Counter: {counter}</p>
-		<button onClick={incrementCounter}>Increment counter</button>
+		<button onClick={() => incrementCounter()}>Increment counter</button>
 	</div>
 );
 

@@ -31,6 +31,7 @@
 ### Detailed version
 - `src/` contains your application source code.
   - `src/index.js` is the webpack application entry point - everything starts from there.
+  - `src/reducer.js` defines the root reducer.
   - `src/index.html` is the html template used to generate the index page sent to the client.
   - `src/App.js` is the root React component which contains the root routes and dev-tools logic.
   - `src/views` contains the application views. Each view resides in a separate directory and follows naming convention that *create user* directory contains *CreateUserView.js*. The directory can contains additional files such as stylesheets (.scss), sub-views, components etc.
