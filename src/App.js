@@ -2,8 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import views from './views';
 
-import IndexView from './views/index/IndexView';
-import UigView from './views/uig/UigView';
+import ReadmeView from './views/readme/ReadmeView';
 import NotFoundView from './views/not-found/NotFoundView';
 
 import createDevTools from './components/dev-tools';
@@ -12,8 +11,7 @@ export default () => (
 	<div className="app">
 		<Switch>
 			{/* custom routes */}
-			<Route exact path="/" component={IndexView} />
-			<Route path="/uig" component={UigView} />
+			<Route exact path="/" component={ReadmeView} />
 
 			{/* automatic /view/.. routes */}
 			{Object.keys(views)
