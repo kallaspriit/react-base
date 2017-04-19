@@ -7,8 +7,8 @@ export default class ExampleCounter extends Component {
 	};
 
 	render = () => (
-		<div className="counter-view">
-			<h2>Counter</h2>
+		<div className="example-counter">
+			<h2>Counter example based on state</h2>
 			<p>Counter: {this.state.counter}</p>
 			<button onClick={this.handleIncrementCounter}>Increment counter</button>
 		</div>

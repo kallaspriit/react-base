@@ -2,19 +2,25 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
+import configureStore from './services/configure-store';
 
 // get the root view and styles
 import App from './App';
 import './gfx/main.scss';
+
+const store = configureStore();
 
 // renders the application to html root element
 function renderApplication(application) {
 	// render the application
 	render(
 		<AppContainer>
-			<Router>
-				{application}
-			</Router>
+			<Provider store={store}>
+				<Router>
+					{application}
+				</Router>
+			</Provider>
 		</AppContainer>,
 		document.getElementById('root'),
 	);

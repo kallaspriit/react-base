@@ -134,7 +134,8 @@ export default class CounterView extends Component {
 ```
 
 ## Future ideas
-- Integrate redux?
+- Implement indexing reducers?
+- Rething file naming conventions for actions/constants/reducers?
 - Intergate testing?
 - Implement environment configuration logic.
 - Add GraphQL example?

@@ -1,26 +1,27 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import views from './views';
+import createDevTools from './components/dev-tools';
 
+// views used in root routes
 import ReadmeView from './views/readme/ReadmeView';
 import NotFoundView from './views/not-found/NotFoundView';
 
-import createDevTools from './components/dev-tools';
+// generates automatic /view/... routes based on the generated src/views/index.js index file
+function generateAutomaticRoutes() {
+	return Object.keys(views)
+		.map(viewName => (
+			<Route key={viewName} path={`/view/${viewName}`} component={views[viewName]} />
+		));
+}
 
+// root application component
 export default () => (
 	<div className="app">
 		<Switch>
-			{/* custom routes */}
 			<Route exact path="/" component={ReadmeView} />
 
-			{/* automatic /view/.. routes */}
-			{Object.keys(views)
-				.map(viewName => (
-					<Route key={viewName} path={`/view/${viewName}`} component={views[viewName]} />
-				))
-			}
-
-			{/* 404 not found route */}
+			{generateAutomaticRoutes()}
 			<Route component={NotFoundView} />
 		</Switch>
 		{createDevTools()}
