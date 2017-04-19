@@ -138,6 +138,8 @@ export default class CounterView extends Component {
 - Implement indexing reducers?
 - Integrate testing?
 - Implement environment configuration logic?
+- Handle svg background?
+- Add REST API example?
 - Add GraphQL example?
 - Add watcher to npm serve script to rebuild on changes?
 - Integrate logging (Winston, Bunyan, debug, ...)?

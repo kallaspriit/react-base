@@ -4,6 +4,7 @@ import { RouterMatchShape } from '../../constants/shapes';
 
 import StatefulView from './children/stateful/StatefulView';
 import ReduxView from './children/redux/ReduxView';
+import SvgView from './children/svg/SvgView';
 
 const ExampleView = ({ match }) => (
 	<div className="examples-view">
@@ -16,10 +17,14 @@ const ExampleView = ({ match }) => (
 			<li>
 				<Link to={`${match.url}/redux`}>Counter example based on redux store</Link>
 			</li>
+			<li>
+				<Link to={`${match.url}/svg`}>Embedding SVG image</Link>
+			</li>
 		</ul>
 		<div className="child-view">
 			<Route path={`${match.url}/stateful`} component={StatefulView} />
 			<Route path={`${match.url}/redux`} component={ReduxView} />
+			<Route path={`${match.url}/svg`} component={SvgView} />
 		</div>
 	</div>
 );

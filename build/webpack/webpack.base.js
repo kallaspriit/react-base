@@ -1,8 +1,31 @@
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { NamedModulesPlugin } from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ExtractTextWebpackPlugin from 'extract-text-webpack-plugin';
+import autoprefixer from 'autoprefixer';
 import paths from '../../config/paths';
 
+// track depracated functionality
 process.traceDeprecation = true;
+
+// extracts stylesheet file (disabled in development mode)
+const extractScss = new ExtractTextWebpackPlugin({
+	filename: '[name].[contenthash:8].css',
+	disable: process.env.NODE_ENV === 'development',
+});
+
+// configure postcss
+const postCssOptions = {
+	plugins: () => ([
+		autoprefixer({
+			browsers: [
+				'>1%',
+				'last 4 versions',
+				'Firefox ESR',
+				'not ie < 11',
+			],
+		}),
+	]),
+};
 
 // base configuration
 const config = {
@@ -37,11 +60,37 @@ const config = {
 				}],
 			},
 
-			// add support loading media files
+			// add support for loading sass files
 			{
-				test: /\.(gif|png|jpe?g|svg)$/,
+				test: /\.scss$/,
 				include: [
 					paths.gfx,
+					paths.views,
+					paths.components,
+				],
+				use: extractScss.extract({
+					fallback: 'style-loader',
+					use: [
+						{ loader: 'css-loader', options: { sourceMap: true, importLoaders: 1, fixUrls: true } },
+						{ loader: 'postcss-loader', options: postCssOptions },
+						{ loader: 'sass-loader', query: { outputStyle: 'expanded' } },
+					],
+				}),
+			},
+
+			// add support for loading font files
+			{
+				test: /\.(ttf|woff|woff2)$/,
+				loader: 'file-loader',
+			},
+
+			// add support loading media files
+			{
+				test: /\.(gif|png|jpe?g|)$/,
+				include: [
+					paths.gfx,
+					paths.views,
+					paths.components,
 				],
 				use: [{
 					loader: 'file-loader',
@@ -70,26 +119,30 @@ const config = {
 				}],
 			},
 
-			// add support for loading sass files
+			// add support loading svg images
 			{
-				test: /\.scss$/,
+				test: /\.svg$/,
 				include: [
 					paths.gfx,
 					paths.views,
 					paths.components,
 				],
 				use: [{
-					loader: 'style-loader',
+					loader: 'babel-loader',
+					query: {
+						presets: ['es2015'],
+					},
 				}, {
-					loader: 'css-loader',
-				}, {
-					loader: 'sass-loader',
+					loader: 'react-svg-loader',
+					query: {
+						jsx: true,
+					},
 				}],
 			},
 
 			// add support for loading markdown (.md) and text files (.txt) as a string
 			{
-				test: /\.md$/,
+				test: /\.md|\.txt$/,
 				include: [
 					paths.context,
 				],
@@ -111,6 +164,9 @@ const config = {
 			template: paths.indexHtml,
 			inject: true,
 		}),
+
+		// this is disabled in development mode
+		extractScss,
 	],
 };
 
