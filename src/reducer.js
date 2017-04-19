@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
-// TODO take from auto-generated index
-import exampleReduxReducer from './views/example/children/redux/example-redux-reducer';
+// TODO auto-generate this file
+import reduxReducer from './views/examples/children/redux/reduxReducer';
 
 export default combineReducers({
-	exampleReduxReducer,
+	reduxReducer,
 });

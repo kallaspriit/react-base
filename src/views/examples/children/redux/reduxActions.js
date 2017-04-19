@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
 import {
 	INCREMENT,
-} from './example-redux-constants';
+} from './reduxConstants';
 
 export const incrementCounter = createAction(INCREMENT);

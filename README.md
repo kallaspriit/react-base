@@ -136,9 +136,8 @@ export default class CounterView extends Component {
 
 ## Future ideas
 - Implement indexing reducers?
-- Rething file naming conventions for actions/constants/reducers?
-- Intergate testing?
-- Implement environment configuration logic.
+- Integrate testing?
+- Implement environment configuration logic?
 - Add GraphQL example?
 - Add watcher to npm serve script to rebuild on changes?
 - Integrate logging (Winston, Bunyan, debug, ...)?

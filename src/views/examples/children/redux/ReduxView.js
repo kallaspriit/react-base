@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as exampleReduxActions from './example-redux-actions';
+import * as reduxActions from './reduxActions';
 
-const ExampleRedux = ({
+const ReduxView = ({
 	counter,
 	incrementCounter,
 }) => (
@@ -15,19 +15,19 @@ const ExampleRedux = ({
 );
 
 
-ExampleRedux.propTypes = {
+ReduxView.propTypes = {
 	counter: PropTypes.number.isRequired,
 	incrementCounter: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ exampleReduxReducer }) => ({
-	counter: exampleReduxReducer.counter,
+const mapStateToProps = ({ reduxReducer }) => ({
+	counter: reduxReducer.counter,
 });
 
 const matchDispatchToProps = {
-	...exampleReduxActions,
+	...reduxActions,
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(
-	ExampleRedux,
+	ReduxView,
 );

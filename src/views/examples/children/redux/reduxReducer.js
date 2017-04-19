@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions';
 import {
 	INCREMENT,
-} from './example-redux-constants';
+} from './reduxConstants';
 
 const initialState = {
 	counter: 0,
