@@ -7,10 +7,12 @@ import { watch } from 'chokidar';
 import opn from 'opn';
 import 'colors';
 import startDevServer from '../services/dev-server';
+import startGraphqlServer from '../../server/server';
 import { generateViewsIndex } from '../services/indexer';
 import reportWebpackStats from '../services/webpack-stats-reporter';
 import webpackConfig from '../webpack/webpack.dev';
 import paths from '../../config/paths';
+import graphqlServerConfig from '../../config/server-config';
 
 // dev server configuration
 const serverConfig = {
@@ -71,6 +73,9 @@ compiler.plugin('done', (stats) => {
 
 		// start a development server in the background
 		startDevServer();
+
+		// also start the graphql server
+		startGraphqlServer(graphqlServerConfig);
 
 		// watch for view file changes and regenerate the index
 		const watcher = watch(paths.views, {

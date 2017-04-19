@@ -14,7 +14,6 @@ const ReduxView = ({
 	</div>
 );
 
-
 ReduxView.propTypes = {
 	counter: PropTypes.number.isRequired,
 	incrementCounter: PropTypes.func.isRequired,

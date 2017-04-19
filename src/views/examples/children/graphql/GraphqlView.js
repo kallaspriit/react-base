@@ -2,24 +2,13 @@ import React, { Component } from 'react';
 import { gql, graphql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-export class GraphqlView extends Component {
+export class GraphqlView extends Component { // eslint-disable-line react/prefer-stateless-function
 
-	render = () => (
-		<div className="graphql-view">
-			<h1>Graphql example</h1>
-			{this.renderViewer()}
-			<p>
-				<button onClick={() => this.props.data.refetch()}>Refetch</button>
-			</p>
-			{/* <code>{JSON.stringify(data)}</code> */}
-		</div>
-	)
-
-	renderViewer = () => {
+	render = () => {
 		const {
 			loading: isLoading,
 			error,
-			viewer,
+			message,
 		} = this.props.data;
 
 		if (error) {
@@ -35,25 +24,15 @@ export class GraphqlView extends Component {
 		}
 
 		return (
-			<div>
+			<div className="graphql-view">
+				<h1>Graphql example</h1>
+				{message}
 				<p>
-					<strong>{viewer.login}</strong><br />
-					{viewer.email}
+					<button onClick={() => this.props.data.refetch()}>Refetch</button>
 				</p>
-				<ul>
-					{viewer.repositories.nodes.map(this.renderRepository)}
-				</ul>
-				{/* <code>{JSON.stringify(viewer)}</code> */}
 			</div>
 		);
 	}
-
-	renderRepository = repository => (
-		<li>
-			<p><strong>{repository.name}</strong></p>
-			<p>{repository.description}</p>
-		</li>
-	)
 }
 
 GraphqlView.propTypes = {
@@ -61,30 +40,12 @@ GraphqlView.propTypes = {
 		loading: PropTypes.bool.isRequired,
 		refetch: PropTypes.func.isRequired,
 		error: PropTypes.object,
-		viewer: PropTypes.shape({
-			login: PropTypes.string.isRequired,
-			email: PropTypes.string.isRequired,
-			repositories: PropTypes.shape({
-				nodes: PropTypes.arrayOf(PropTypes.shape({
-					name: PropTypes.string.isRequired,
-					description: PropTypes.string.isRequired,
-				})),
-			}),
-		}),
+		message: PropTypes.string,
 	}),
 };
 
 export default graphql(gql`
-	query GetMyInfo {
-		viewer {
-			login
-			email
-			repositories(first: 10) {
-				nodes {
-					name
-					description
-				}
-			}
-		}
+	query {
+		message
 	}
 `)(GraphqlView);
