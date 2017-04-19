@@ -129,14 +129,8 @@ const config = {
 				],
 				use: [{
 					loader: 'babel-loader',
-					query: {
-						presets: ['es2015'],
-					},
 				}, {
 					loader: 'react-svg-loader',
-					query: {
-						jsx: true,
-					},
 				}],
 			},
 

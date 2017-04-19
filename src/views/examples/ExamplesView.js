@@ -5,6 +5,7 @@ import { RouterMatchShape } from '../../constants/shapes';
 import StatefulView from './children/stateful/StatefulView';
 import ReduxView from './children/redux/ReduxView';
 import SvgView from './children/svg/SvgView';
+import GraphqlView from './children/graphql/GraphqlView';
 
 const ExampleView = ({ match }) => (
 	<div className="examples-view">
@@ -20,11 +21,15 @@ const ExampleView = ({ match }) => (
 			<li>
 				<Link to={`${match.url}/svg`}>Embedding SVG image</Link>
 			</li>
+			<li>
+				<Link to={`${match.url}/graphql`}>Fetching data with GraphQL</Link>
+			</li>
 		</ul>
 		<div className="child-view">
 			<Route path={`${match.url}/stateful`} component={StatefulView} />
 			<Route path={`${match.url}/redux`} component={ReduxView} />
 			<Route path={`${match.url}/svg`} component={SvgView} />
+			<Route path={`${match.url}/graphql`} component={GraphqlView} />
 		</div>
 	</div>
 );
