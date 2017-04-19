@@ -69,7 +69,7 @@ compiler.plugin('done', (stats) => {
 	if (isFirstDone) {
 		const indexUrl = `http://localhost${serverConfig.port !== 80 ? `:${serverConfig.port}` : ''}/`;
 
-		console.log(`server at ${indexUrl.bold} was started in ${compileTimeTaken}ms`);
+		console.log(`Development server started at ${indexUrl.bold} (${compileTimeTaken}ms)`);
 
 		// start a development server in the background
 		startDevServer();
@@ -99,7 +99,7 @@ compiler.plugin('done', (stats) => {
 
 		isFirstDone = false;
 	} else {
-		console.log(`${' UPDATED '.bgGreen.black} in ${compileTimeTaken}ms`);
+		// console.log(`${' UPDATED '.bgGreen.black} in ${compileTimeTaken}ms`);
 	}
 });
 

@@ -8,9 +8,9 @@ import SvgView from './children/svg/SvgView';
 import GraphqlView from './children/graphql/GraphqlView';
 
 const ExampleView = ({ match }) => (
-	<div className="examples-view">
-		<h1>Examples view</h1>
-		<p>Edit this file in <strong>X:\projects\base\src\views\examples\ExamplesView.js</strong></p>
+	<div className="sandbox-view">
+		<h1>Experiments sandbox</h1>
+		<p>Edit this file in <strong>src/views/sandbox/SandboxView.js</strong></p>
 		<ul>
 			<li>
 				<Link to={`${match.url}/stateful`}>Counter example based on state</Link>
