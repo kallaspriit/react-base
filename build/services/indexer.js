@@ -2,7 +2,7 @@ import glob from 'glob';
 import path from 'path';
 import fs from 'fs';
 import 'colors';
-import paths from '../../config/paths';
+import paths from '../../build/paths';
 
 export function generateViewsIndex(callback) {
 	// glob for view directories

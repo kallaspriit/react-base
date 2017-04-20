@@ -4,7 +4,7 @@ import changeCase from 'change-case';
 import sanitizeFilename from 'sanitize-filename';
 import 'colors';
 import template from './template';
-import paths from '../../config/paths';
+import paths from '../../build/paths';
 
 export default function({
 	name,

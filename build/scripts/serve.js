@@ -1,7 +1,7 @@
 import serve from 'serve';
 import opn from 'opn';
 import 'colors';
-import paths from '../../config/paths';
+import paths from '../../build/paths';
 
 const port = 80; // TODO make configurable
 const url = `http://localhost${port !== 80 ? `:${port}` : ''}`;

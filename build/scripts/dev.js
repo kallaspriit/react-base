@@ -14,7 +14,7 @@ import configureDevRoutes from '../services/configure-dev-routes';
 import invalidateRequireCache from '../services/invalidate-require-cache';
 import watchChange from '../../server/services/watch-change';
 import webpackConfig from '../webpack/webpack.dev';
-import paths from '../../config/paths';
+import paths from '../../build/paths';
 
 // dev server configuration (used by both webpack dev middleware and express)
 const serverConfig = {
@@ -114,8 +114,6 @@ configureDevRoutes(router);
 
 // watch for server file changes
 watchChange(paths.server, () => {
-	console.log('reloading graphql..');
-
 	invalidateRequireCache(/[/\\]server[/\\]/);
 
 	// create new router

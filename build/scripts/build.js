@@ -4,7 +4,7 @@ import 'colors';
 import { generateViewsIndex } from '../services/indexer';
 import reportWebpackStats from '../services/webpack-stats-reporter';
 import webpackConfig from '../webpack/webpack.build';
-import paths from '../../config/paths';
+import paths from '../../build/paths';
 
 // create compiler
 const compiler = webpack(webpackConfig);

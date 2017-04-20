@@ -2,7 +2,7 @@ import { NamedModulesPlugin } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextWebpackPlugin from 'extract-text-webpack-plugin';
 import autoprefixer from 'autoprefixer';
-import paths from '../../config/paths';
+import paths from '../../build/paths';
 
 // track depracated functionality
 process.traceDeprecation = true;

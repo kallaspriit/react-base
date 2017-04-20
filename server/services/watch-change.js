@@ -1,14 +1,12 @@
 import { watch } from 'chokidar';
 
-export default function(pattern, changeCallback) {
+export default function watchChange(pattern, changeCallback) {
 	const watcher = watch(pattern, {
 		ignoreInitial: true,
 	});
 
 	// TODO consider other changes such as added/removed files and dirs?
-	watcher.on('all', (filename) => {
-		console.log(`file ${filename} changed`);
-
+	watcher.on('all', () => {
 		changeCallback();
 	});
 }
