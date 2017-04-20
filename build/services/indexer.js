@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import glob from 'glob';
 import path from 'path';
 import fs from 'fs';

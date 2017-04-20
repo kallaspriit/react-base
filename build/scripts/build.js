@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import webpack from 'webpack';
 import { Spinner } from 'cli-spinner';
 import 'colors';

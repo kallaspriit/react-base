@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import { resolve, join } from 'path';
 import fs from 'fs';
 import changeCase from 'change-case';

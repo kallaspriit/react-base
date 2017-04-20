@@ -1,4 +1,3 @@
-// import cors from 'cors';
 import graphqlMiddleware from 'express-graphql';
 
 export default function configureServer(app) {
@@ -7,9 +6,6 @@ export default function configureServer(app) {
 	delete require.cache[require.resolve('../resolver')];
 	const schema = require('../schema').default; // eslint-disable-line global-require
 	const resolver = require('../resolver').default; // eslint-disable-line global-require
-
-	// enable cors
-	// app.use(cors());
 
 	// create the graphql endpoint
 	app.use('/graphql', graphqlMiddleware({

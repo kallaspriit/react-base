@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import React, { Component } from 'react';
 import { createView } from '../../api/dev-server/dev-server-api';
 import ViewsMenu from '../views-menu/ViewsMenu';
@@ -49,11 +47,7 @@ export default class DevTools extends Component {
 
 		createView({
 			name: this.state.viewName,
-		}).then((response) => {
-			console.log('view created', response);
 		}).catch((error) => {
-			console.error('creating view failed', error.message);
-
 			this.setState({
 				error: error.message,
 			});

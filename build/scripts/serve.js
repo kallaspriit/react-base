@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import serve from 'serve';
 import opn from 'opn';
 import 'colors';

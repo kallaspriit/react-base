@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 function logMessage(number, message) {
 	const lines = message.split(/\n/);
 
