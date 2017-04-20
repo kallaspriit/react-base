@@ -45,6 +45,7 @@ const config = {
 	output: {
 		path: paths.dist,
 		filename: 'bundle.js',
+		publicPath: '/',
 	},
 
 	// configure module loaders

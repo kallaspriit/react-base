@@ -19,8 +19,9 @@ config.plugins.unshift(
 
 // add hot reload entries
 config.entry.app.unshift(
-	'webpack-dev-server/client?http://localhost:3000',
-	require.resolve('webpack/hot/dev-server'),
+	// 'webpack-dev-server/client?http://localhost:3000',
+	'webpack-hot-middleware/client',
+	// require.resolve('webpack/hot/dev-server'),
 	require.resolve('react-hot-loader/patch'),
 );
 
