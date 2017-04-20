@@ -141,8 +141,13 @@ export default class CounterView extends Component {
 ```
 
 ## Future ideas
-- Implement more complex graphql server.
-- Implement graphql server hot-reload.
+- Implement GraphQL server sessions.
+- Implement GraphQL server authentication example.
+- Implement https proxy.
+- Make the development graphql server live on the same port as the appliation.
+- Implement production server serving both the static app and also GraphQL server (express instead of serve).
+- Make the graphql server hot-reload nicer.
+- Consider replacing indexer with glob logic?
 - Implement indexing reducers?
 - Integrate testing?
 - Implement environment configuration logic?
