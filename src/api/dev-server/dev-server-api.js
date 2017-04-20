@@ -1,6 +1,6 @@
 import { post } from '../../services/fetch';
 
-const baseUrl = 'http://localhost:9991';
+const baseUrl = '/dev';
 
 export const createView = ({
 	name,

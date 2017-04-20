@@ -3,24 +3,26 @@
 import path from 'path';
 import webpack from 'webpack';
 import express from 'express';
+import bodyParser from 'body-parser';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import { Spinner } from 'cli-spinner';
 import { watch } from 'chokidar';
 import opn from 'opn';
 import 'colors';
-import startDevServer from '../services/dev-server';
-import startGraphqlServer from '../../server/server';
+// import startGraphqlServer from '../../server/server';
+import configureDevServer from '../services/configure-dev-server';
+import configureGraphqlServer from '../services/configure-graphql-server';
 import { generateViewsIndex } from '../services/indexer';
 import reportWebpackStats from '../services/webpack-stats-reporter';
 import webpackConfig from '../webpack/webpack.dev';
 import paths from '../../config/paths';
-import graphqlServerConfig from '../../config/server-config';
+// import graphqlServerConfig from '../../config/server-config';
 
 // dev server configuration (used by both webpack dev middleware and express)
 const serverConfig = {
 	host: '0.0.0.0',
-	port: 3000,
+	port: 3000, // TODO make configurable
 	publicPath: webpackConfig.output.publicPath,
 	overlay: {
 		warnings: true,
@@ -39,6 +41,8 @@ const compiler = webpack(webpackConfig);
 
 // create the express server app and middlewares
 const app = express();
+
+// configure webpack dev and hot-reload middlewares
 const devMiddleware = webpackDevMiddleware(compiler, serverConfig);
 const hotMiddleware = webpackHotMiddleware(compiler, {
 	log: null, // disable logs
@@ -47,6 +51,9 @@ const hotMiddleware = webpackHotMiddleware(compiler, {
 // add the webpack middlewares
 app.use(devMiddleware);
 app.use(hotMiddleware);
+
+// add support for JSON payload (used by the /dev/* endpoints)
+app.use(bodyParser.json());
 
 // configure compiler
 let compileStartTime = Date.now();
@@ -87,12 +94,6 @@ compiler.plugin('done', (stats) => {
 
 		console.log(`Development server started at ${indexUrl.bold} (${compileTimeTaken}ms)`);
 
-		// start a development server in the background
-		startDevServer();
-
-		// also start the graphql server
-		startGraphqlServer(graphqlServerConfig);
-
 		// watch for view file changes and regenerate the index
 		const watcher = watch(paths.views, {
 			ignoreInitial: true,
@@ -119,15 +120,11 @@ compiler.plugin('done', (stats) => {
 	}
 });
 
-// generate indexes
-generateViewsIndex();
+// configure development server endpoints (/dev/*)
+configureDevServer(app);
 
-// test custom route
-app.get('/test', (request, response, _next) => {
-	response.json({
-		test: true,
-	});
-});
+// configure GraphQL server
+configureGraphqlServer(app);
 
 // default route, serve the single-page app
 app.use('*', (request, response, next) => {
@@ -146,6 +143,9 @@ app.use('*', (request, response, next) => {
 		return null;
 	});
 });
+
+// generate indexes
+generateViewsIndex();
 
 // start the dev server on given port
 app.listen(serverConfig, () => {
