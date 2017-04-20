@@ -141,18 +141,17 @@ export default class CounterView extends Component {
 ```
 
 ## Future ideas
+- Move paths.js from /config to /build.
+- Make the development graphql server live on the same port as the application.
+- Implement production server serving both the static app and also GraphQL server (express instead of serve).
+- Make the development server port configurable.
 - Implement GraphQL server sessions.
 - Implement GraphQL server authentication example.
 - Implement https proxy.
-- Make the development graphql server live on the same port as the application.
-- Make the development server port configurable.
-- Implement production server serving both the static app and also GraphQL server (express instead of serve).
-- Make the graphql server hot-reload nicer.
-- Consider replacing indexer with glob logic?
 - Implement indexing reducers?
 - Integrate testing?
 - Implement environment configuration logic?
-- Handle svg background?
+- Handle SVG background?
 - Add REST API example?
 - Add watcher to npm serve script to rebuild on changes?
 - Integrate logging (Winston, Bunyan, debug, ...)?

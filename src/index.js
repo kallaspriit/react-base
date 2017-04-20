@@ -5,7 +5,6 @@ import { AppContainer } from 'react-hot-loader';
 import { ApolloProvider } from 'react-apollo';
 import configureStore from './services/configure-store';
 import configureGraphql from './services/configure-graphql';
-import serverConfig from '../config/server-config';
 
 // get the root view and styles
 import App from './App';
@@ -13,7 +12,7 @@ import './gfx/main.scss';
 
 // configure dependencies
 const store = configureStore();
-const client = configureGraphql(serverConfig.url);
+const client = configureGraphql('/graphql');
 
 // renders the application to html root element
 function renderApplication(application) {

@@ -12,7 +12,7 @@ import opn from 'opn';
 import 'colors';
 // import startGraphqlServer from '../../server/server';
 import configureDevServer from '../services/configure-dev-server';
-import configureGraphqlServer from '../services/configure-graphql-server';
+import configureGraphqlServer from '../../server/services/configure-server';
 import { generateViewsIndex } from '../services/indexer';
 import reportWebpackStats from '../services/webpack-stats-reporter';
 import webpackConfig from '../webpack/webpack.dev';
@@ -52,8 +52,9 @@ const hotMiddleware = webpackHotMiddleware(compiler, {
 app.use(devMiddleware);
 app.use(hotMiddleware);
 
-// add support for JSON payload (used by the /dev/* endpoints)
+// add support for different payloads
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // configure compiler
 let compileStartTime = Date.now();
@@ -125,6 +126,8 @@ configureDevServer(app);
 
 // configure GraphQL server
 configureGraphqlServer(app);
+
+// TODO graphql server hot-reload
 
 // default route, serve the single-page app
 app.use('*', (request, response, next) => {
