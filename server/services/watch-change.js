@@ -6,7 +6,7 @@ export default function(pattern, changeCallback) {
 	});
 
 	// TODO consider other changes such as added/removed files and dirs?
-	watcher.on('change', (filename) => {
+	watcher.on('all', (filename) => {
 		console.log(`file ${filename} changed`);
 
 		changeCallback();

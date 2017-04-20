@@ -9,5 +9,6 @@ export default function(endpointUri) {
 	// configure graphql client
 	return new ApolloClient({
 		networkInterface,
+		connectToDevTools: true, // https://github.com/apollographql/apollo-client-devtools
 	});
 }

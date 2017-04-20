@@ -90,6 +90,8 @@ Because **DX** (development experience) matters too!
 - React dev-tools
   - Get [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) for Google Chrome browser.
   - Get [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en) for Google Chrome browser.
+- Apollo dev-tools
+  - Get [Apollo Client Development tools](https://chrome.google.com/webstore/detail/apollo-client-developer-t/jdkknkkbebbapilgoeccciglkfbmbnfm/related) for Google Chrome browser.
 - Linting
   - Configure your IDE to show ESLint errors.
   - run `npm run lint` before checking your code into version control to check for issues.
@@ -140,8 +142,10 @@ export default class CounterView extends Component {
 
 ```
 
-## Future ideas
+## Task list & possible ideas
+- Styles get loaded with delay in dev mode for some reason, fix it.
 - Move paths.js from /config to /build.
+- Update react-apollo once they fix the "Accessing PropTypes via the main React package is deprecated.." issue.
 - Make the development graphql server live on the same port as the application.
 - Implement production server serving both the static app and also GraphQL server (express instead of serve).
 - Make the development server port configurable.

@@ -9,6 +9,7 @@ export default {
 	src: resolve('src'),
 	config: resolve('config'),
 	dist: resolve('dist'),
+	server: resolve('server'),
 	buildTemplates: resolve('build', 'templates'),
 	gfx: resolve('src', 'gfx'),
 	components: resolve('src', 'components'),

@@ -1,6 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
-import express from 'express';
+import express, { Router } from 'express';
 import bodyParser from 'body-parser';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -8,14 +8,13 @@ import { Spinner } from 'cli-spinner';
 import { watch } from 'chokidar';
 import opn from 'opn';
 import 'colors';
-// import startGraphqlServer from '../../server/server';
-import configureDevServer from '../services/configure-dev-server';
-import configureGraphqlServer from '../../server/services/configure-server';
 import { generateViewsIndex } from '../services/indexer';
 import reportWebpackStats from '../services/webpack-stats-reporter';
+import configureDevRoutes from '../services/configure-dev-routes';
+import invalidateRequireCache from '../services/invalidate-require-cache';
+import watchChange from '../../server/services/watch-change';
 import webpackConfig from '../webpack/webpack.dev';
 import paths from '../../config/paths';
-// import graphqlServerConfig from '../../config/server-config';
 
 // dev server configuration (used by both webpack dev middleware and express)
 const serverConfig = {
@@ -54,7 +53,7 @@ app.use(hotMiddleware);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// configure compiler
+// keep track of how long compile takes and whether it was the first compile
 let compileStartTime = Date.now();
 let isFirstDone = true;
 
@@ -93,23 +92,6 @@ compiler.plugin('done', (stats) => {
 
 		console.log(`Development server started at ${indexUrl.bold} (${compileTimeTaken}ms)`);
 
-		// watch for view file changes and regenerate the index
-		const watcher = watch(paths.views, {
-			ignoreInitial: true,
-		});
-
-		// regenerate views index if the changed file is in views directory
-		watcher.on('addDir', (_path) => {
-			// console.log(`${path.bold} was added, regenerating index`);
-
-			generateViewsIndex();
-		});
-		watcher.on('unlinkDir', (_path) => {
-			// console.log(`${path.bold} was removed, regenerating index`);
-
-			generateViewsIndex();
-		});
-
 		// open in browser
 		opn(indexUrl);
 
@@ -119,13 +101,29 @@ compiler.plugin('done', (stats) => {
 	}
 });
 
-// configure development server endpoints (/dev/*)
-configureDevServer(app);
+// the router can be replaced to hot-reload server resources
+let router = new Router();
 
-// configure GraphQL server
-configureGraphqlServer(app);
+// all the requests go to this router
+app.use((request, response, next) => {
+	router(request, response, next);
+});
 
-// TODO graphql server hot-reload
+// configure initial dev routes
+configureDevRoutes(router);
+
+// watch for server file changes
+watchChange(paths.server, () => {
+	console.log('reloading graphql..');
+
+	invalidateRequireCache(/[/\\]server[/\\]/);
+
+	// create new router
+	router = new Router();
+
+	// reconfigure dev routes
+	configureDevRoutes(router);
+});
 
 // default route, serve the single-page app
 app.use('*', (request, response, next) => {
@@ -147,6 +145,16 @@ app.use('*', (request, response, next) => {
 
 // generate indexes
 generateViewsIndex();
+
+// watch for view file changes and regenerate the index
+const viewsWatcher = watch(paths.views, {
+	ignoreInitial: true,
+});
+
+// regenerate views index if the changed file is in views directory
+viewsWatcher.on('all', () => {
+	generateViewsIndex();
+});
 
 // start the dev server on given port
 app.listen(serverConfig, () => {

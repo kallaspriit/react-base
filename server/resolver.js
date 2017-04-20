@@ -2,5 +2,5 @@
 let counter = 1;
 
 export default {
-	message: () => `Hello GraphQL #${counter++}!`,
+	message: () => `Hello GraphQL #${counter++}`,
 };
