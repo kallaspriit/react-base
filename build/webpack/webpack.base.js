@@ -1,3 +1,4 @@
+import path from 'path';
 import { NamedModulesPlugin } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextWebpackPlugin from 'extract-text-webpack-plugin';
@@ -37,7 +38,7 @@ const config = {
 	entry: {
 		app: [
 			'whatwg-fetch', // fetch polyfill - https://github.com/github/fetch
-			paths.entry,
+			path.join(paths.src, 'index.js'),
 		],
 	},
 
@@ -156,7 +157,7 @@ const config = {
 		// generate the index html file
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
-			template: paths.indexHtml,
+			template: path.join(paths.src, 'index.html'),
 			inject: true,
 		}),
 

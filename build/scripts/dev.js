@@ -121,8 +121,16 @@ app.use((request, response, next) => {
 // configure initial dev routes
 configureDevRoutes(router);
 
+// watch for server js and graphql files
+const watchPatterns = [
+	path.join(paths.server, '**/*.js'),
+	path.join(paths.server, '**/*.gql'),
+];
+
 // watch for server file changes
-watchChange(paths.server, () => {
+watchChange(watchPatterns, () => {
+	const reloadStartTime = Date.now();
+
 	invalidateRequireCache(/[/\\]server[/\\]/);
 
 	// create new router
@@ -130,6 +138,8 @@ watchChange(paths.server, () => {
 
 	// reconfigure dev routes
 	configureDevRoutes(router);
+
+	console.log(`${'reloaded server'.bold} in ${Date.now() - reloadStartTime}ms`);
 });
 
 // default route, serve the single-page app

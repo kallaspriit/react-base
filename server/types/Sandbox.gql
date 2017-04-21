@@ -1,0 +1,5 @@
+type Sandbox {
+	message: String!
+	sum(a: Int!, b: Int!): Int!
+	list: [Int!]
+}

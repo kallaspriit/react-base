@@ -1,34 +1,14 @@
 import { buildSchema } from 'graphql';
+import { mergeStrings } from 'gql-merge';
+import path from 'path';
+import fs from 'fs';
+import glob from 'glob';
+import paths from '../build/paths';
 
-export default buildSchema(`
-	type Sandbox {
-		message: String
-	}
+// find type definitions, read their contents and merge them into one
+const typeFilenames = glob.sync(path.join(paths.server, 'types', '**/*.gql'));
+const typeDefinitions = typeFilenames.map(filename => fs.readFileSync(filename, 'utf8'));
+const mergedTypes = mergeStrings(typeDefinitions);
 
-	type Query {
-		sandbox: Sandbox
-	}
-`);
-
-// import {
-// 	GraphQLSchema,
-// 	GraphQLObjectType,
-// 	GraphQLString,
-// } from 'graphql';
-//
-// // something to change..
-// let counter = 1;
-//
-// export default new GraphQLSchema({
-// 	query: new GraphQLObjectType({
-// 		name: 'RootQueryType',
-// 		fields: {
-// 			message: {
-// 				type: GraphQLString,
-// 				resolve() {
-// 					return `Hello GraphQL #${counter++}`;
-// 				},
-// 			},
-// 		},
-// 	}),
-// });
+// return schema
+export default buildSchema(mergedTypes);
