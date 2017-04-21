@@ -10,5 +10,8 @@ type Sandbox {
 	user(id: Int!): User
 	asyncUser(id: Int!): User
 	errorMaybe: String
-	errorPromise: String!
+	errorDefinitely: String!
+	exceptionMaybe: String
+	exceptionDefinitely: String!
+	exceptionPromise: String!
 }
