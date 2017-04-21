@@ -25,7 +25,7 @@ export class GraphqlView extends Component { // eslint-disable-line react/prefer
 
 		return (
 			<div className="graphql-view">
-				<h1>Graphql example!</h1>
+				<h1>Graphql example</h1>
 				{message}
 				<p>
 					<button onClick={() => this.props.data.refetch()}>Refetch</button>

@@ -53,7 +53,6 @@
     "react-svg-loader": "^1.1.1",
     "sanitize-filename": "^1.6.1",
     "sass-loader": "^6.0.3",
-    "serve": "^5.1.4",
     "style-loader": "^0.16.1",
     "webpack": "^2.3.3",
     "webpack-dev-middleware": "^1.10.1",
@@ -63,7 +62,7 @@
     "start": "cross-env NODE_ENV=development babel-node build/scripts/dev.js",
     "dev": "cross-env NODE_ENV=development babel-node build/scripts/dev.js",
     "build": "cross-env NODE_ENV=production babel-node build/scripts/build.js",
-    "serve": "babel-node build/scripts/serve.js",
+    "production": "babel-node build/scripts/production.js",
     "graphql": "babel-node server/start.js",
     "lint": "eslint ."
   },

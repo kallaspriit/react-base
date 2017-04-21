@@ -1,18 +1,6 @@
 # React application base
 **Minimalistic react application structure with development server and build system.**
 
-## Setup
-- run `npm install` to install all dependencies.
-- run `npm start` to start the development server or `npm build` to build the production version in */dist* directory.
-- open [http://localhost:3000](http://localhost:3000) in your browser (if it didn't open automatically).
-
-## Command line
-- `npm start` - start the development server on port 3000 (provides hot-reload, generators).
-- `npm run build` - build the production version in */dist* directory.
-- `npm run serve` - serves the production version from the */dist* directory (build it first!).
-- `npm run graphql` - starts the graphql server (development server starts this as well).
-- `npm run lint` - check your code for issues and style rules.
-
 ## Technologies
 - ES2015+ (Babel)
 - React
@@ -22,7 +10,32 @@
 - Webpack + hot loader
 - ESLint
 
+
+## Features
+- ES2015 codebase.
+- Built-in GraphQL server.
+- React components and reducers hot reload.
+- GraphQL schema hot-reload in development.
+- Production build system and server providing both the static application as well as GraphQL server.
+- View generator and indexer in dev mode.
+- Linting (ESLint).
+
+
+## Setup
+- run `npm install` to install all dependencies.
+- run `npm start` to start the development server or `npm build` to build the production version in */dist* directory.
+- open [http://localhost:3000](http://localhost:3000) in your browser (if it didn't open automatically).
+
+
+## Command line
+- `npm start` - start the development server along with the GraphQL endpoint on port 3000 (provides hot-reload, generators).
+- `npm run build` - build the production version in */dist* directory.
+- `npm run production` - serves the production version along with the GraphQL endpoint from the */dist* directory (build it first!).
+- `npm run lint` - check your code for issues and style rules.
+
+
 ## Directory & files structure
+
 
 ### TL;DR version
 - `src/` contains your application source code.
@@ -111,7 +124,6 @@ export default () => (
 		<h1>User view</h1>
 	</div>
 );
-
 ```
 
 ### Stateful view example
@@ -139,22 +151,18 @@ export default class CounterView extends Component {
 		});
 	}
 }
-
 ```
 
-## Task list & possible ideas
-- Update react-apollo once they fix the "Accessing PropTypes via the main React package is deprecated.." issue.
-- Make the development graphql server live on the same port as the application.
-- Implement production server serving both the static app and also GraphQL server (express instead of serve).
+## Task list
+- Implement environment configuration logic?
 - Make the development server port configurable.
 - Implement GraphQL server sessions.
 - Implement GraphQL server authentication example.
-- Implement https proxy.
+- Integrate testing.
+
+## Future ideas
 - Implement indexing reducers?
-- Integrate testing?
-- Implement environment configuration logic?
 - Handle SVG background?
 - Add REST API example?
-- Add watcher to npm serve script to rebuild on changes?
 - Integrate logging (Winston, Bunyan, debug, ...)?
-- Build or remove the UIG view?
+- Implement https proxy?

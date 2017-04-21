@@ -8,3 +8,8 @@ export const RouterMatchShape = PropTypes.shape({
 	path: PropTypes.string.isRequired,
 	url: PropTypes.string.isRequired,
 }).isRequired;
+
+export const ChildrenShape = PropTypes.oneOfType([
+	PropTypes.arrayOf(PropTypes.node),
+	PropTypes.node,
+]);

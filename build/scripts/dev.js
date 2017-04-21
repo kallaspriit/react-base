@@ -36,7 +36,7 @@ const serverConfig = {
 // setup compiler and dev server
 const compiler = webpack(webpackConfig);
 
-// create the express server app and middlewares
+// create the express server app
 const app = express();
 
 // configure webpack dev and hot-reload middlewares
@@ -49,12 +49,12 @@ const hotMiddleware = webpackHotMiddleware(compiler, {
 app.use(devMiddleware);
 app.use(hotMiddleware);
 
-// add support for different payloads
+// add support for various payloads
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // keep track of how long compile takes and whether it was the first compile
-let compileStartTime = Date.now();
+let startTime = Date.now();
 let isFirstDone = true;
 
 // setup spinner
@@ -63,7 +63,7 @@ spinner.setSpinnerString(19);
 
 // called when the compiler starts compiling
 compiler.plugin('compile', (_params) => {
-	compileStartTime = Date.now();
+	startTime = Date.now();
 
 	spinner.setSpinnerTitle('Updating, please wait..');
 	spinner.start();
@@ -84,13 +84,15 @@ compiler.plugin('done', (stats) => {
 		return;
 	}
 
-	const compileTimeTaken = Date.now() - compileStartTime;
+	const timeTaken = Date.now() - startTime;
 
 	// open web browser on first done event
 	if (isFirstDone) {
 		const indexUrl = `http://localhost${serverConfig.port !== 80 ? `:${serverConfig.port}` : ''}/`;
 
-		console.log(`Development server started at ${indexUrl.bold} (${compileTimeTaken}ms)`);
+		console.log(`${' SERVER STARTED '.bgGreen.black} on ${indexUrl.bold} in ${timeTaken}ms`);
+		console.log(`> This is a development server. For production server use ${'> npm run production'.bold}`);
+		console.log(`> Press ${'CTRL+C'.bold} to stop the server`);
 
 		// open in browser
 		opn(indexUrl);
