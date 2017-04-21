@@ -11,6 +11,10 @@ let counter = 1;
       id
       name
     }
+    asyncUser(id: 2) {
+      id
+      name
+    }
   }
 }
 */
@@ -18,8 +22,11 @@ let counter = 1;
 export default {
 	sandbox: {
 		message: () => `Hello GraphQL #${counter++}`,
+
 		sum: ({ a, b }) => a + b,
+
 		list: () => [1, 2, 3, 4],
+
 		user: (({ id }) => {
 			const users = [{
 				id: 1,
@@ -34,5 +41,31 @@ export default {
 
 			return users.find(user => user.id === id);
 		}),
+
+		asyncUser: (({ id }) => {
+			const users = [{
+				id: 1,
+				name: 'Hugh Jass',
+			}, {
+				id: 2,
+				name: 'Jack Mehoff',
+			}, {
+				id: 3,
+				name: 'Al Coholic',
+			}];
+
+			const result = users.find(user => user.id === id);
+
+			// fake delay and return promise
+			return new Promise((resolve, _reject) => {
+				setTimeout(() => {
+					resolve(result);
+				}, 1000);
+			});
+		}),
+
+		errorMaybe: () => new Error('maybe test error message'),
+
+		errorPromise: () => new Error('promise test error message'),
 	},
 };

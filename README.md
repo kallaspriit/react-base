@@ -178,6 +178,7 @@ export default class CounterView extends Component {
 
 ## Future ideas
 - Render GraphQL errors in development mode.
+- Linting GraphQL type definitions?
 - Add custom Graphiql view.
 - Implement indexing reducers?
 - Handle SVG background?

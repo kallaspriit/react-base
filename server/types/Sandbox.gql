@@ -8,4 +8,7 @@ type Sandbox {
 	sum(a: Int!, b: Int!): Int!
 	list: [Int!]
 	user(id: Int!): User
+	asyncUser(id: Int!): User
+	errorMaybe: String
+	errorPromise: String!
 }
