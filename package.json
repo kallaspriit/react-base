@@ -63,7 +63,7 @@
     "start": "cross-env NODE_ENV=development babel-node build/scripts/dev.js",
     "dev": "cross-env NODE_ENV=development babel-node build/scripts/dev.js",
     "build": "cross-env NODE_ENV=production babel-node build/scripts/build.js",
-    "production": "babel-node build/scripts/production.js",
+    "production": "cross-env NODE_ENV=production babel-node build/scripts/production.js",
     "graphql": "babel-node server/start.js",
     "lint": "eslint ."
   },

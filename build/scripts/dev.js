@@ -94,7 +94,10 @@ compiler.plugin('done', (stats) => {
 	if (isFirstDone) {
 		const indexUrl = `http://localhost${serverConfig.port !== 80 ? `:${serverConfig.port}` : ''}/`;
 
-		console.log(`${' SERVER STARTED '.bgGreen.black} on ${indexUrl.bold} in ${timeTaken}ms`);
+		console.log(
+			`${' SERVER STARTED '.bgGreen.black} on ${indexUrl.bold} ` +
+			`in ${Math.round(timeTaken / 100) / 10}s (${process.env.NODE_ENV})`,
+		);
 		console.log(`> This is a development server. For production server use ${'> npm run production'.bold}`);
 		console.log(`> Press ${'CTRL+C'.bold} to stop the server`);
 

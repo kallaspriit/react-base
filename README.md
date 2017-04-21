@@ -41,6 +41,7 @@
 - one can also create host-specific configurations such as `config/example.json` for http://example.com.
 - the additional configuration files are merged with default config, overriding existing values.
 - add `config/local.json` to set/override developer-specific options (don't check this file into version control).
+- there are [more options](https://github.com/lorenwest/node-config/wiki/Configuration-Files), read the manual.
 
 For example to change the development server port, create `config/local.json` with the following contents:
 ```json
@@ -171,7 +172,6 @@ export default class CounterView extends Component {
 ```
 
 ## Task list
-- Make the development server port configurable.
 - Implement GraphQL server sessions.
 - Implement GraphQL server authentication example.
 - Integrate testing.

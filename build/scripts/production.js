@@ -54,7 +54,7 @@ app.listen({
 	const timeTaken = Date.now() - startTime;
 
 	// provide some help
-	console.log(`${' SERVER STARTED '.bgGreen.black} on ${indexUrl.bold} in ${timeTaken}ms`);
+	console.log(`${' SERVER STARTED '.bgGreen.black} on ${indexUrl.bold} in ${timeTaken}ms (${process.env.NODE_ENV})`);
 	console.log(`> The pre-built application is served from ${paths.dist.bold}`);
 	console.log(`> This is a static application server. For development with hot-reload use ${'> npm start'.bold}`);
 	console.log(`> Press ${'CTRL+C'.bold} to stop the server`);
