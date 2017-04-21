@@ -7,6 +7,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import { Spinner } from 'cli-spinner';
 import { watch } from 'chokidar';
 import opn from 'opn';
+import config from 'config';
 import 'colors';
 import { generateViewsIndex } from '../services/indexer';
 import reportWebpackStats from '../services/webpack-stats-reporter';
@@ -16,10 +17,11 @@ import watchChange from '../../server/services/watch-change';
 import webpackConfig from '../webpack/webpack.dev';
 import paths from '../../build/paths';
 
+const devConfig = config.get('dev');
+
 // dev server configuration (used by both webpack dev middleware and express)
 const serverConfig = {
 	host: '0.0.0.0',
-	port: 3000, // TODO make configurable
 	publicPath: webpackConfig.output.publicPath,
 	overlay: {
 		warnings: true,
@@ -31,6 +33,8 @@ const serverConfig = {
 	quiet: true,
 	noInfo: true,
 	index: 'index.html',
+	port: 3000,
+	...devConfig,
 };
 
 // setup compiler and dev server

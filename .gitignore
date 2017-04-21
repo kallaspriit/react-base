@@ -1,5 +1,5 @@
 node_modules/
 dist/
 npm-debug.log
-
 src/views/index\.js
+config/local.json

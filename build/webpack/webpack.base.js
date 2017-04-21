@@ -7,8 +7,6 @@ import paths from '../../build/paths';
 // track depracated functionality
 process.traceDeprecation = true;
 
-console.log('ENVIRONMENT', process.env.NODE_ENV);
-
 // extracts stylesheet file (disabled in development mode)
 const extractScss = new ExtractTextWebpackPlugin({
 	filename: '[name].[contenthash:8].css',

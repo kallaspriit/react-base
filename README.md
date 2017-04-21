@@ -34,8 +34,25 @@
 - `npm run lint` - check your code for issues and style rules.
 
 
-## Directory & files structure
+## Configuring
+[node config](https://github.com/lorenwest/node-config) is used to manage application configuration.
+- base configuration is defined in `config/default.json`.
+- one can create environment-specific configurations such as `config/production.json`.
+- one can also create host-specific configurations such as `config/example.json` for http://example.com.
+- the additional configuration files are merged with default config, overriding existing values.
+- add `config/local.json` to set/override developer-specific options (don't check this file into version control).
 
+For example to change the development server port, create `config/local.json` with the following contents:
+```json
+{
+	"dev": {
+		"port": 8080
+	}
+}
+
+```
+
+## Directory & files structure
 
 ### TL;DR version
 - `src/` contains your application source code.
@@ -154,7 +171,6 @@ export default class CounterView extends Component {
 ```
 
 ## Task list
-- Implement environment configuration logic?
 - Make the development server port configurable.
 - Implement GraphQL server sessions.
 - Implement GraphQL server authentication example.
