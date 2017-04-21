@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import views from './views';
-import createDevTools from './components/dev-tools';
+import createDevTools from './components/dev-tools/create-dev-tools';
 
 // views used in root routes
 import ReadmeView from './views/readme/ReadmeView';

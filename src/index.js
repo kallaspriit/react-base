@@ -29,8 +29,14 @@ function renderApplication(application) {
 	);
 }
 
-// render initial application
-renderApplication(<App />);
+// delay rendering the application in dev mode to avoid flash of unstyled content (CSS is in JS)
+if (process.env.NODE_ENV === 'development') {
+	setTimeout(() => {
+		renderApplication(<App />);
+	}, 100);
+} else {
+	renderApplication(<App />);
+}
 
 // accept hot updates and re-render the application
 if (module.hot) {

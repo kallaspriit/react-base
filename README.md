@@ -143,7 +143,6 @@ export default class CounterView extends Component {
 ```
 
 ## Task list & possible ideas
-- Styles get loaded with delay in dev mode for some reason, fix it.
 - Update react-apollo once they fix the "Accessing PropTypes via the main React package is deprecated.." issue.
 - Make the development graphql server live on the same port as the application.
 - Implement production server serving both the static app and also GraphQL server (express instead of serve).
