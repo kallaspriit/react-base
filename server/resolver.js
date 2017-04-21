@@ -2,5 +2,7 @@
 let counter = 1;
 
 export default {
-	message: () => `Hello GraphQL #${counter++}`,
+	sandbox: {
+		message: () => `Hello GraphQL #${counter++}`,
+	},
 };

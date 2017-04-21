@@ -177,6 +177,7 @@ export default class CounterView extends Component {
 - Integrate testing.
 
 ## Future ideas
+- Render GraphQL errors in development mode.
 - Implement indexing reducers?
 - Handle SVG background?
 - Add REST API example?
