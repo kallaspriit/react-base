@@ -1,5 +1,11 @@
+type User {
+	id: Int!
+	name: String!
+}
+
 type Sandbox {
 	message: String!
 	sum(a: Int!, b: Int!): Int!
 	list: [Int!]
+	user(id: Int!): User
 }
