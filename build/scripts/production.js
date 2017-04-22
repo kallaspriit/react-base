@@ -1,4 +1,5 @@
 import express from 'express';
+import sessionMiddleware from 'express-session';
 import bodyParser from 'body-parser';
 import opn from 'opn';
 import path from 'path';
@@ -30,6 +31,13 @@ const app = express();
 // add support for various payloads
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// add support for sessions
+app.use(sessionMiddleware({
+	resave: false,
+	saveUninitialized: false,
+	...productionConfig.session,
+}));
 
 // serve the static production application
 app.use(
