@@ -1,0 +1,13 @@
+input CredentialsInput {
+	username: String!
+	password: String!
+}
+
+type Authentication {
+	login(credentials: CredentialsInput): User
+}
+
+type Mutation {
+	# login(credentials: CredentialsInput): User
+	authentication: Authentication!
+}
