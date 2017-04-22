@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { createView } from '../../api/dev-server/dev-server-api';
 import ViewsMenu from '../views-menu/ViewsMenu';
 
-import './dev-tools.scss';
-
 export default class DevTools extends Component {
 
 	state = {

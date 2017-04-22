@@ -1,0 +1,16 @@
+# Represents a user in the system
+type User {
+	# Unique system identifier
+	id: Int!
+
+	# Username
+	login: String!
+
+	# User full name
+	name: String!
+}
+
+type Query {
+	# Lookup user information by login identifier
+	user(login: String!): User
+}

@@ -1,4 +1,4 @@
-type User {
+type SanboxUser {
 	id: Int!
 	name: String!
 }
@@ -7,11 +7,15 @@ type Sandbox {
 	message: String!
 	sum(a: Int!, b: Int!): Int!
 	list: [Int!]
-	user(id: Int!): User
-	asyncUser(id: Int!): User
+	user(id: Int!): SanboxUser
+	asyncUser(id: Int!): SanboxUser
 	errorMaybe: String
-	errorDefinitely: String!
+	errorDefinitely: String
 	exceptionMaybe: String
 	exceptionDefinitely: String!
 	exceptionPromise: String!
+}
+
+type Query {
+	sandbox: Sandbox
 }

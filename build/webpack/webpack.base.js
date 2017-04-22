@@ -51,6 +51,8 @@ const config = {
 
 	// configure module loaders
 	module: {
+		
+		// module loading rules
 		rules: [
 
 			// add support for loading js files with babel
@@ -60,6 +62,13 @@ const config = {
 				use: [{
 					loader: 'babel-loader',
 				}],
+			},
+
+			// enable glob-loading in scss imports
+			{
+				test: /\.scss/,
+				enforce: 'pre',
+				loader: 'import-glob-loader',
 			},
 
 			// add support for loading sass files

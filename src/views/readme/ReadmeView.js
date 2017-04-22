@@ -2,7 +2,6 @@ import React from 'react';
 import Markdown from 'react-markdown';
 import ViewsMenu from '../../components/views-menu/ViewsMenu';
 import readmeContents from '../../../README.md';
-import './readme-views.scss';
 
 export default () => (
 	<div className="readme-view">

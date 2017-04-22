@@ -1,86 +1,13 @@
-// something to change..
-let counter = 1;
+import glob from 'glob';
+import path from 'path';
+import paths from '../build/paths';
 
-/*
-{
-  sandbox {
-    message
-    sum(a: 3, b: 7)
-    list
-    user(id: 1) {
-      id
-      name
-    }
-    #asyncUser(id: 2) {
-    #  id
-    #  name
-    #}
-    #errorMaybe
-    #errorPromise
-  }
-}
+// find the resolvers and merge them into a single object
+const globPattern = path.join(paths.server, 'resolvers', '**/*.js');
+const filenames = glob.sync(globPattern);
+const resolvers = filenames
+	.map(filename => require(filename).default) // eslint-disable-line global-require, import/no-dynamic-require
+	.reduce((result, resolver) => ({ ...result, ...resolver }), {});
 
-*/
-
-export default {
-	sandbox: {
-		message: () => `Hello GraphQL #${counter++}`,
-
-		sum: ({ a, b }) => a + b,
-
-		list: () => [1, 2, 3, 4],
-
-		user: (({ id }) => {
-			const users = [{
-				id: 1,
-				name: 'Hugh Jass',
-			}, {
-				id: 2,
-				name: 'Jack Mehoff',
-			}, {
-				id: 3,
-				name: 'Al Coholic',
-			}];
-
-			return users.find(user => user.id === id);
-		}),
-
-		asyncUser: ({ id }) => new Promise((resolve, _reject) => {
-			setTimeout(() => {
-				const users = [{
-					id: 1,
-					name: 'Hugh Jass',
-				}, {
-					id: 2,
-					name: 'Jack Mehoff',
-				}, {
-					id: 3,
-					name: 'Al Coholic',
-				}];
-
-				const result = users.find(user => user.id === id);
-
-				resolve(result);
-			}, 1000);
-		}),
-
-		errorMaybe: () => new Error('maybe test error message'),
-
-		errorDefinitely: () => new Error('definitely test error message'),
-
-		exceptionMaybe: () => {
-			throw new Error('maybe exception message');
-		},
-
-		exceptionDefinitely: () => {
-			throw new Error('definitely exception message');
-		},
-
-		// TODO this crashes the server, any good way to handle?
-		exceptionPromise: () => new Promise((_resolve, _reject) => {
-			setTimeout(() => {
-				throw new Error('promise exception message');
-			}, 1000);
-		}),
-	},
-};
+// return resolvers
+export default resolvers;
