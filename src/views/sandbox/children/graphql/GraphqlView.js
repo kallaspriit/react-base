@@ -8,7 +8,7 @@ export class GraphqlView extends Component { // eslint-disable-line react/prefer
 		const {
 			loading: isLoading,
 			error,
-			message,
+			sandbox,
 		} = this.props.data;
 
 		if (error) {
@@ -26,7 +26,8 @@ export class GraphqlView extends Component { // eslint-disable-line react/prefer
 		return (
 			<div className="graphql-view">
 				<h1>Graphql example</h1>
-				{message}
+				<p><strong>message:</strong> {sandbox.message}</p>
+				<p><strong>session counter:</strong> {sandbox.session}</p>
 				<p>
 					<button onClick={() => this.props.data.refetch()}>Refetch</button>
 				</p>
@@ -40,12 +41,18 @@ GraphqlView.propTypes = {
 		loading: PropTypes.bool.isRequired,
 		refetch: PropTypes.func.isRequired,
 		error: PropTypes.object,
-		message: PropTypes.string,
+		sandbox: PropTypes.shape({
+			message: PropTypes.string.isRequired,
+			session: PropTypes.number.isRequired,
+		}),
 	}),
 };
 
 export default graphql(gql`
 	query {
-		message
+		sandbox {
+			message
+			session
+		}
 	}
 `)(GraphqlView);

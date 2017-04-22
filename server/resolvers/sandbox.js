@@ -61,5 +61,15 @@ export default {
 				throw new Error('promise exception message');
 			}, 1000);
 		}),
+
+		session: (parent, request) => {
+			const session = request.session;
+
+			if (!session.counter) {
+				session.counter = 1;
+			}
+
+			return session.counter++;
+		},
 	},
 };

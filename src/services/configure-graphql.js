@@ -4,6 +4,10 @@ export default function(endpointUri) {
 	// configure graphql network interface
 	const networkInterface = createNetworkInterface({
 		uri: endpointUri,
+		opts: {
+			// send cookies used for session
+			credentials: 'same-origin',
+		},
 	});
 
 	// configure graphql client

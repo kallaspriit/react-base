@@ -1,6 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import express, { Router } from 'express';
+import sessionMiddleware from 'express-session';
 import bodyParser from 'body-parser';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -17,7 +18,7 @@ import watchChange from '../../server/services/watch-change';
 import webpackConfig from '../webpack/webpack.dev';
 import paths from '../../build/paths';
 
-const devConfig = config.get('dev');
+const devConfig = config.get('dev-server');
 
 // dev server configuration (used by both webpack dev middleware and express)
 const serverConfig = {
@@ -56,6 +57,13 @@ app.use(hotMiddleware);
 // add support for various payloads
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// add support for sessions
+app.use(sessionMiddleware({
+	resave: false,
+	saveUninitialized: false,
+	...devConfig.session,
+}));
 
 // keep track of how long compile takes and whether it was the first compile
 let startTime = Date.now();

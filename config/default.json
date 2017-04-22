@@ -1,5 +1,11 @@
 {
-	"dev": {
-		"port": 3000
+	"dev-server": {
+		"port": 3000,
+		"session": {
+			"secret": "development"
+		}
+	},
+	"production-server": {
+		"port": 80
 	}
 }

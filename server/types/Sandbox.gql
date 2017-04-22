@@ -1,19 +1,43 @@
+# Represents a sandbox user
 type SanboxUser {
 	id: Int!
 	name: String!
 }
 
+# Namespace for testing various GraphQL features
 type Sandbox {
+	# Returns a simple string
 	message: String!
+
+	# Returns sum of two required integers
 	sum(a: Int!, b: Int!): Int!
+
+	# Returns a list of integers
 	list: [Int!]
+
+	# Returns sandbox user by id or null if not found
 	user(id: Int!): SanboxUser
+
+	# Returns sandbox user, simulating asyncronously fetch
 	asyncUser(id: Int!): SanboxUser
+
+	# Simulates returning error when no return value was promised
 	errorMaybe: String
+
+	# Simulates returning error when a return value was promised
 	errorDefinitely: String
+
+	# Simulates throwing error when no return value was promised
 	exceptionMaybe: String
+
+	# Simulates throwing error when a return value was promised
 	exceptionDefinitely: String!
+
+	# Simulates throwing error in an asyncronous handler (currently crashes server)
 	exceptionPromise: String!
+
+	# Returns an ever-increasing counter based on user session
+	session: Int!
 }
 
 type Query {

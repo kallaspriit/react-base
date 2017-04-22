@@ -3,12 +3,18 @@ import bodyParser from 'body-parser';
 import opn from 'opn';
 import path from 'path';
 import { Spinner } from 'cli-spinner';
+import config from 'config';
 import 'colors';
 import configureGraphqlServer from '../../server/services/configure-server';
 import paths from '../../build/paths';
 
+const productionConfig = config.get('production-server');
+
 // configuration
-const port = 80; // TODO make configurable
+const serverConfig = {
+	port: 80,
+	...productionConfig,
+};
 
 // setup spinner
 const spinner = new Spinner('Starting production server, please wait..'.bold);
@@ -43,14 +49,12 @@ app.use('*', (request, response, _next) => {
 });
 
 // start the server
-app.listen({
-	port,
-}, () => {
+app.listen(serverConfig, () => {
 	// stop the spinner
 	spinner.stop(true);
 
 	// the application is served from this url
-	const indexUrl = `http://localhost${port !== 80 ? `:${port}` : ''}`;
+	const indexUrl = `http://localhost${serverConfig.port !== 80 ? `:${serverConfig.port}` : ''}`;
 	const timeTaken = Date.now() - startTime;
 
 	// provide some help

@@ -172,16 +172,18 @@ export default class CounterView extends Component {
 ```
 
 ## Task list
-- Implement GraphQL server sessions.
+- Add GraphQL mutation example.
 - Implement GraphQL server authentication example.
 - Integrate testing.
 
 ## Future ideas
-- Render GraphQL errors in development mode.
+- Render GraphQL errors in development mode?
+- Add stateless/stateful view generator option?
+- Add component generating?
 - Linting GraphQL type definitions?
 - Add custom Graphiql view.
 - Implement indexing reducers?
-- Handle SVG background?
+- Handle SVG backgrounds?
 - Add REST API example?
 - Integrate logging (Winston, Bunyan, debug, ...)?
 - Implement https proxy?
