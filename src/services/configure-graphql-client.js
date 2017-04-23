@@ -1,9 +1,9 @@
 import { ApolloClient, createNetworkInterface } from 'react-apollo';
 
-export default function(endpointUri) {
+export default function configureGraphqlClient() {
 	// configure graphql network interface
 	const networkInterface = createNetworkInterface({
-		uri: endpointUri,
+		uri: '/graphql',
 		opts: {
 			// send cookies used for session
 			credentials: 'same-origin',

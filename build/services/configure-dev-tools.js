@@ -1,7 +1,7 @@
 import createView from './create-view';
 import { success } from './payload';
 
-export default function configureDevServer(app) {
+export default function configureDevTools(app) {
 	// handle creating a new view
 	app.post('/dev/create-view', (request, response) => {
 		const name = request.body.name;

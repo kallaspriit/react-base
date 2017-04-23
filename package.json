@@ -6,8 +6,8 @@
   "dependencies": {
     "autoprefixer": "^6.7.7",
     "config": "^1.25.1",
-    "express-graphql": "^0.6.4",
     "express-session": "^1.15.2",
+    "graphql-server-express": "^0.7.2",
     "keymirror": "^0.1.1",
     "normalize-scss": "^6.0.0",
     "prop-types": "^15.5.8",
@@ -20,6 +20,7 @@
     "redux": "^3.6.0",
     "redux-actions": "^2.0.2",
     "redux-thunk": "^2.2.0",
+    "webpack-dev-middleware": "^1.10.2",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {

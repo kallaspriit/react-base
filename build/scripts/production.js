@@ -6,7 +6,7 @@ import path from 'path';
 import { Spinner } from 'cli-spinner';
 import config from 'config';
 import 'colors';
-import configureGraphqlServer from '../../server/services/configure-server';
+import configureGraphqlServer from '../../server/services/configure-graphql-server';
 import paths from '../../build/paths';
 
 const productionConfig = config.get('production-server');

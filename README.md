@@ -172,18 +172,37 @@ export default class CounterView extends Component {
 ```
 
 ## Task list
+- Replace graphql-express with graphql-server-express by Apollo.
 - Add GraphQL mutation example.
 - Implement GraphQL server authentication example.
 - Integrate testing.
+- Implement server side logging (Winston, Bunyan, debug, ...)?
+- Implement client side logging (Winston, Bunyan, debug, ...)?
+- Integrate error tracking service.
 
 ## Future ideas
 - Render GraphQL errors in development mode?
 - Add stateless/stateful view generator option?
+- Consider flow, at least for the server?
 - Add component generating?
 - Linting GraphQL type definitions?
 - Add custom Graphiql view.
 - Implement indexing reducers?
 - Handle SVG backgrounds?
 - Add REST API example?
-- Integrate logging (Winston, Bunyan, debug, ...)?
 - Implement https proxy?
+
+## Learn & Resources
+### GraphQL
+- Libraries
+  - [graphql](https://github.com/graphql/graphql-js) - provides base query resolving logic.
+  - [graphql-server-express](https://github.com/apollographql/graphql-server) - `graphql-server-express` provides express server middleware.
+  - [react-apollo](https://github.com/apollographql/react-apollo) - provides client-side React integration.
+  - [graphiql](https://github.com/graphql/graphiql) - provides GraphQL exploring GUI in browser.
+- Learning
+  - [GraphQL.org learn](http://graphql.org/learn/) - getting started.
+  - [GraphQL.org code](http://graphql.org/code/) - building in code.
+  - Authentication [part 1](https://dev-blog.apollodata.com/a-guide-to-authentication-in-graphql-e002a4039d1), [part 2](https://dev-blog.apollodata.com/auth-in-graphql-part-2-c6441bcc4302) - some ideas for implementing authentication.
+  - [Apollo React docs](http://dev.apollodata.com/react/) - documentation for using the Apollo React client.
+  - [Apollo server docs](http://dev.apollodata.com/tools/graphql-server/index.html) - documentation for using the Apollo server.
+  - [Let's learn GraphQL](https://learngraphql.com/) - interactive learning tool.

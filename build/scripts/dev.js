@@ -101,7 +101,7 @@ compiler.plugin('done', (stats) => {
 	// open web browser on first done event
 	if (isFirstDone) {
 		const indexUrl = `http://localhost${serverConfig.port !== 80 ? `:${serverConfig.port}` : ''}/`;
-		const graphiqlUrl = `http://localhost${serverConfig.port !== 80 ? `:${serverConfig.port}` : ''}/graphql`;
+		const graphiqlUrl = `http://localhost${serverConfig.port !== 80 ? `:${serverConfig.port}` : ''}/graphiql`;
 
 		console.log(
 			`${' SERVER STARTED '.bgGreen.black} on ${indexUrl.bold} ` +

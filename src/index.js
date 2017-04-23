@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
 import { ApolloProvider } from 'react-apollo';
 import configureStore from './services/configure-store';
-import configureGraphql from './services/configure-graphql';
+import configureGraphqlClient from './services/configure-graphql-client';
 
 // get the root view and styles
 import './gfx/main.scss';
@@ -12,7 +12,7 @@ import App from './App';
 
 // configure dependencies
 const store = configureStore();
-const client = configureGraphql('/graphql');
+const client = configureGraphqlClient();
 
 // renders the application to html root element
 function renderApplication(application) {
