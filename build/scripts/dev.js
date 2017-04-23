@@ -101,6 +101,7 @@ compiler.plugin('done', (stats) => {
 	// open web browser on first done event
 	if (isFirstDone) {
 		const indexUrl = `http://localhost${serverConfig.port !== 80 ? `:${serverConfig.port}` : ''}/`;
+		const graphiqlUrl = `http://localhost${serverConfig.port !== 80 ? `:${serverConfig.port}` : ''}/graphql`;
 
 		console.log(
 			`${' SERVER STARTED '.bgGreen.black} on ${indexUrl.bold} ` +
@@ -109,8 +110,9 @@ compiler.plugin('done', (stats) => {
 		console.log(`> This is a development server. For production server use ${'> npm run production'.bold}`);
 		console.log(`> Press ${'CTRL+C'.bold} to stop the server`);
 
-		// open in browser
+		// open both the application and Graphqiql interface in the browser
 		opn(indexUrl);
+		opn(graphiqlUrl);
 
 		isFirstDone = false;
 	} else {
