@@ -1,7 +1,7 @@
 # Represents a user in the system
 type User {
 	# Unique system identifier
-	id: Int!
+	id: String!
 
 	# Username
 	login: String!

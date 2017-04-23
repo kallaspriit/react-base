@@ -172,6 +172,8 @@ export default class CounterView extends Component {
 ```
 
 ## Task list
+- Figure out business logic and authentication layers.
+- Integrate `dataloader` for batching.
 - Replace graphql-express with graphql-server-express by Apollo.
 - Add GraphQL mutation example.
 - Implement GraphQL server authentication example.
@@ -179,8 +181,12 @@ export default class CounterView extends Component {
 - Implement server side logging (Winston, Bunyan, debug, ...)?
 - Implement client side logging (Winston, Bunyan, debug, ...)?
 - Integrate error tracking service.
+- Document pm2 usage.
+- Setup CI for testing and automatic deploy.
 
 ## Future ideas
+- Generate classes based on GraphQL schema to be used by models?
+- Consider decorators for defining the component queries.
 - Render GraphQL errors in development mode?
 - Add stateless/stateful view generator option?
 - Consider flow, at least for the server?
@@ -198,11 +204,18 @@ export default class CounterView extends Component {
   - [graphql](https://github.com/graphql/graphql-js) - provides base query resolving logic.
   - [graphql-server-express](https://github.com/apollographql/graphql-server) - `graphql-server-express` provides express server middleware.
   - [react-apollo](https://github.com/apollographql/react-apollo) - provides client-side React integration.
+  - [graphql-tools](https://github.com/apollographql/graphql-tools) - opinionated tools for building executable schemas.
   - [graphiql](https://github.com/graphql/graphiql) - provides GraphQL exploring GUI in browser.
 - Learning
   - [GraphQL.org learn](http://graphql.org/learn/) - getting started.
-  - [GraphQL.org code](http://graphql.org/code/) - building in code.
+  - [GraphQL.org schema](http://graphql.org/learn/schema/) - learn the schema language.
+  - [GraphQL.org code](http://graphql.org/code/) - getting started with code.
   - Authentication [part 1](https://dev-blog.apollodata.com/a-guide-to-authentication-in-graphql-e002a4039d1), [part 2](https://dev-blog.apollodata.com/auth-in-graphql-part-2-c6441bcc4302) - some ideas for implementing authentication.
   - [Apollo React docs](http://dev.apollodata.com/react/) - documentation for using the Apollo React client.
   - [Apollo server docs](http://dev.apollodata.com/tools/graphql-server/index.html) - documentation for using the Apollo server.
   - [Let's learn GraphQL](https://learngraphql.com/) - interactive learning tool.
+- Example applications
+  - [Apollo GitHunt](https://github.com/apollographql/GitHunt-API) - server organizing example.
+- Videos & talks
+  - [Apollo - Managing GraphQL Development At Scale](https://www.youtube.com/watch?v=XOM8J4LaYFg).
+  - [How Facebook organizes their GraphQL code](https://www.youtube.com/watch?v=etax3aEe2dA).

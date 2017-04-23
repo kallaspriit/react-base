@@ -1,0 +1,4 @@
+type Query {
+	# Returns logged in user information or null if not logged in
+	viewer: User
+}

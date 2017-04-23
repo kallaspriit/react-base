@@ -1,6 +1,9 @@
 # Represents a sandbox user
 type SanboxUser {
+	# User identifier
 	id: Int!
+
+	# User name
 	name: String!
 }
 

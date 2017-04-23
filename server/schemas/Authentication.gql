@@ -1,0 +1,16 @@
+# Login credentials
+input CredentialsInput {
+	# Username
+	login: String!
+
+	# Password
+	password: String!
+}
+
+type Mutation {
+	# Attempts to log the user in by given credentials
+	login(credentials: CredentialsInput): User
+
+	# Logs the user out
+	logout: Boolean!
+}
