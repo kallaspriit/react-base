@@ -3,7 +3,7 @@ import { mergeStrings } from 'gql-merge';
 import path from 'path';
 import fs from 'fs';
 import glob from 'glob';
-import paths from '../build/paths';
+import paths from '../../build/paths';
 
 // find type definitions, read their contents and merge them into one
 const globPattern = path.join(paths.server, 'schemas', '**/*.gql');

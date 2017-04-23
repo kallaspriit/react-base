@@ -178,6 +178,7 @@ export default class CounterView extends Component {
 - Add GraphQL mutation example.
 - Implement GraphQL server authentication example.
 - Integrate testing.
+- Integrate permanent storage session backend in production mode.
 - Implement server side logging (Winston, Bunyan, debug, ...)?
 - Implement client side logging (Winston, Bunyan, debug, ...)?
 - Integrate error tracking service.
